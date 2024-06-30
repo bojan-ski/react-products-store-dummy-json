@@ -3,6 +3,7 @@ import { Outlet, useNavigation } from "react-router-dom"
 import Loading from "./Loading"
 // components
 import Header from "../components/appLayout/header/Header"
+import Footer from "../components/appLayout/footer/Footer"
 
 const AppLayout = () => {
     const navigation = useNavigation()
@@ -15,6 +16,8 @@ const AppLayout = () => {
             <main>
                 {isPageLoading ? <Loading /> : <Outlet />}
             </main>
+
+            <Footer/>
         </>
     )
 }
