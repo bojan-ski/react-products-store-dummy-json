@@ -21,8 +21,17 @@ body{
   font-family: "Poppins", sans-serif;
 }
 
+.capitalize{
+  text-transform: capitalize;
+}
+
 .btn:active{
   transform: scale(0.95);
+}
+
+/* ---------- HEADER ---------- */
+header{
+  background-color: #eee;
 }
 
 /* ---------- MAIN ---------- */
@@ -34,3 +43,5 @@ main{
 .error{
   flex: 1;
 }
+
+/* ---------- FOOTER ---------- */
