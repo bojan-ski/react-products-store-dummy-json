@@ -29,3 +29,8 @@ body{
 main{
   flex: 1;
 }
+
+/* Error page */
+.error{
+  flex: 1;
+}
