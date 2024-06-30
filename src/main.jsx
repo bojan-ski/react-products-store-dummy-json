@@ -1,7 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
+// bootstrap css
+import "/node_modules/bootstrap/dist/js/bootstrap.bundle.js";
+// custom css
 import './index.css'
+// app
+import App from './App.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
