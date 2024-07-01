@@ -43,9 +43,19 @@ main{
   flex: 1;
 }
 
-/* Login page */
-.login-page{
-  background: red;
+/* Login page / Sign Up page */
+.login-page,
+.sing-up-page{
+  margin-top: 100px;
+}
+
+.login-page form,
+.sing-up-page form{
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 50px 40px;
+  border-radius: 25px;
+  box-shadow: 3px 3px 50px rgba(0, 0, 0, 0.1);
 }
 
 /* Error page */

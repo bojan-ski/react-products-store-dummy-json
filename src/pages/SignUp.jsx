@@ -1,3 +1,4 @@
+// components
 import FormInput from "../components/FormInput"
 
 const SignUp = () => {
@@ -14,7 +15,7 @@ const SignUp = () => {
     }
 
     return (
-        <div className='login-page'>
+        <div className='sing-up-page'>
             <div className="container">
                 <form onSubmit={handleSignUpUserSubmit}>
                     <h3 className="text-center mb-4">
@@ -32,7 +33,7 @@ const SignUp = () => {
 
                     {/* login submit btn */}
                     <button type="submit" className="btn btn-primary">
-                    Sign Up
+                        Sign Up
                     </button>
                 </form>
             </div>

@@ -1,5 +1,5 @@
+// components
 import FormInput from "../components/FormInput"
-
 
 const Login = () => {
     const handleLoginUserSubmit = e => {
@@ -28,7 +28,7 @@ const Login = () => {
 
                     {/* login submit btn */}
                     <button type="submit" className="btn btn-primary">
-                        Submit
+                        Login
                     </button>
                 </form>
             </div>
