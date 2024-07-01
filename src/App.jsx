@@ -9,6 +9,8 @@ import About from "./pages/About"
 import ContactUs from "./pages/ContactUs"
 import ErrorPage from "./pages/ErrorPage"
 
+// LOADERS
+import { loader as listOfProductsLoader } from "./pages/Dashboard"
 
 const router = createBrowserRouter([
   {
@@ -19,6 +21,7 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Dashboard />,
+        loader: listOfProductsLoader
       },
       {
         path: 'login',
