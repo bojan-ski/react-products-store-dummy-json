@@ -34,9 +34,18 @@ header{
   background-color: #eee;
 }
 
+.onboarding .onboarding-btn{
+  font-size: 0.8rem;
+}
+
 /* ---------- MAIN ---------- */
 main{
   flex: 1;
+}
+
+/* Login page */
+.login-page{
+  background: red;
 }
 
 /* Error page */
