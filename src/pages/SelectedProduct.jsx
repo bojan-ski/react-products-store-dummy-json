@@ -1,6 +1,11 @@
 import { useLoaderData, Link } from "react-router-dom"
 // utils 
 import fetchSelectedProductDetailsFromDB from "../utils/fetchSelectedProductDetailsFromDB"
+// components
+import ImagesGalleryBox from "../components/selectedProductPage/ImagesGalleryBox"
+import ProductDataBox from "../components/selectedProductPage/ProductDataBox"
+import DescriptionBox from "../components/selectedProductPage/DescriptionBox"
+import ReviewsBox from "../components/selectedProductPage/ReviewsBox"
 
 // LOADER
 export const loader = async ({ params }) => {
@@ -33,61 +38,24 @@ const SelectedProduct = () => {
                     <div className="row">
 
                         {/* row item 1 */}
-                        <div className="col-12 col-md-6 mb-4">
-                            <img src={images[0]} alt={title} className="img-fluid" />
+                        <div className="col-12 col-md-6 text-center">
+                            <ImagesGalleryBox />
                         </div>
 
                         {/* row item 2 */}
                         <div className="col-12 col-md-6 mb-4">
-                            <p className="mb-2">
-                                <span className="fw-bold">Brand: </span> {brand}
-                            </p>
-                            <p className="mb-2">
-                                <span className="fw-bold">Category:</span> {category}
-                            </p>
-                            <p className="mb-1">
-                                <span className="fw-bold">Dimensions:</span>
-                            </p>
-                            <ul >
-                                {Object.entries(dimensions).map(([key, value]) => (
-                                    <li key={key}>
-                                        <span className="fw-bold">{key}</span>: {value}
-                                    </li>
-                                ))}
-                            </ul>
-                            <p className="mb-2">
-                                <span className="fw-bold">Weight:</span> {weight}
-                            </p>
-                            <p className="mb-2">
-                                <span className="fw-bold">Price:</span> {price}
-                            </p>
-                            <p className="mb-2">
-                                <span className="fw-bold">Rating:</span> {rating}
-                            </p>
-                            <p className="mb-2">
-                                <span className="fw-bold">Shipping information:</span> {shippingInformation}
-                            </p>
-                            <p className="mb-2">
-                                <span className="fw-bold">Return policy:</span> {returnPolicy}
-                            </p>
-                            <p className="mb-2">
-                                <span className="fw-bold">Warranty information:</span> {warrantyInformation}
-                            </p>
+                            <ProductDataBox />
                         </div>
 
                         {/* row item 3 */}
                         <div className="col-12 col-md-6 mb-4">
-                            <h5 className="text-center">
-                                Description:
-                            </h5>
-                            <p>
-                                {description}
-                            </p>
+                            <DescriptionBox />
                         </div>
 
                         {/* row item 4 */}
                         <div className="col-12 col-md-6 mb-4">
-                            <h5 className="text-center">
+                            <ReviewsBox />
+                            {/* <h5 className="text-center">
                                 Reviews:
                             </h5>
                             {reviews.map(review => <ul className="list-unstyled">
@@ -97,7 +65,7 @@ const SelectedProduct = () => {
                                     </li>
                                 ))}
                             </ul>
-                            )}
+                            )} */}
                         </div>
                     </div>
                 </section>
