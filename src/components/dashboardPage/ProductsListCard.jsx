@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const ProductsListCard = ({ product }) => {
     // console.log(product);
-    const { brand, category, price, rating, thumbnail, title } = product
+    const { id, brand, category, price, rating, thumbnail, title } = product
 
     return (
         <div className="col-12 col-md-6 col-lg-4 mb-4">
@@ -29,7 +29,7 @@ const ProductsListCard = ({ product }) => {
                 </div>
 
                 <div className="card-details-footer d-flex justify-content-between align-items-center">
-                    <Link className="btn btn-success fs-5">
+                    <Link to={`${id}`} className="btn btn-success fs-5">
                         See details
                     </Link>
                     <h5 className="mb-0">

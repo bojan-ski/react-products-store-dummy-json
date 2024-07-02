@@ -3,6 +3,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom"
 // PAGES
 import AppLayout from "./pages/AppLayout"
 import Dashboard from "./pages/Dashboard"
+import SelectedProduct from "./pages/SelectedProduct"
 import SignUp from "./pages/SignUp"
 import Login from "./pages/Login"
 import About from "./pages/About"
@@ -11,6 +12,7 @@ import ErrorPage from "./pages/ErrorPage"
 
 // LOADERS
 import { loader as listOfProductsLoader } from "./pages/Dashboard"
+import { loader as selectedProductLoader } from "./pages/SelectedProduct"
 
 const router = createBrowserRouter([
   {
@@ -22,6 +24,11 @@ const router = createBrowserRouter([
         index: true,
         element: <Dashboard />,
         loader: listOfProductsLoader
+      },
+      {
+        path: ':id',
+        element: <SelectedProduct />,
+        loader: selectedProductLoader
       },
       {
         path: 'login',
