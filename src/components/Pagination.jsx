@@ -7,7 +7,7 @@ let currentPageNumber = 1
 const Pagination = ({ total, setProductsList }) => {
     const updatedProductsList = async (productsListSkipNumber) => {
         const { products } = await fetchProductsListFromDB(productsListSkipNumber)
-        console.log(products);
+        // console.log(products);
         setProductsList(products)
         return products
     }
@@ -22,7 +22,7 @@ const Pagination = ({ total, setProductsList }) => {
             productsListSkipNumber -= 12
             currentPageNumber -= 1
         }
-        
+
         // console.log(productsListSkipNumber);
         // console.log(currentPageNumber);
 
@@ -42,8 +42,35 @@ const Pagination = ({ total, setProductsList }) => {
     }
 
     return (
-        <div className="pagination mb-4 d-flex align-items-center justify-content-between">
+        // <div className="pagination mb-4 d-flex align-items-center justify-content-between">
+        <div className="pagination mb-4 d-flex justify-content-center">
             <div className="number-of-pages">
+                <button className="btn-info btn px-3 me-2" onClick={() => {
+                    productsListSkipNumber = 0
+                    currentPageNumber = 1
+                    updatedProductsList(productsListSkipNumber)
+                }}>
+                    1
+                </button>
+                <button className="btn-primary btn px-3 me-2" onClick={() => paginationOption('minus')}>
+                    Prev
+                </button>
+                <button className="btn border">
+                    {currentPageNumber}
+                </button>
+                <button className="btn-primary btn px-3 ms-2" onClick={() => paginationOption('plus')}>
+                    Next
+                </button>
+                <button className="btn-info btn px-3 ms-2" onClick={() => {
+                    productsListSkipNumber = Math.floor(total / 12) * 12
+                    currentPageNumber = Math.ceil(total / 12)
+                    updatedProductsList(productsListSkipNumber)
+                }}>
+                    {Math.ceil(total / 12)}
+                </button>
+            </div>
+
+            {/* <div className="number-of-pages">
                 <p className="mb-0 fw-bold text-muted">
                     Page number:
                     <span className="mx-1 text-dark">
@@ -63,7 +90,7 @@ const Pagination = ({ total, setProductsList }) => {
                 <button className="btn-primary btn px-3 btn-next" onClick={() => paginationOption('plus')}>
                     Next
                 </button>
-            </div>
+            </div> */}
         </div>
     )
 }

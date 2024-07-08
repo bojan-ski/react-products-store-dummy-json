@@ -14,11 +14,13 @@ const ProductsListCard = ({ product }) => {
                 <div className="card-details-body mb-3 border-bottom">
                     <div className="d-flex justify-content-between align-items-center mb-2">
                         <p className="mb-0">
-                            {brand}
-                        </p>
-                        <p className="mb-0">
                             {category}
                         </p>
+                        {brand && (
+                            <p className="mb-0">
+                                {brand}
+                            </p>
+                        )}
                     </div>
                     <h5 className="fw-bold">
                         {title}
