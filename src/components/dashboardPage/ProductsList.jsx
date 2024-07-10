@@ -11,7 +11,7 @@ const ProductsList = ({ listOfProductsFromDB }) => {
 
     return (
         <>
-            <SearchAndFilter/>
+            <SearchAndFilter setProductsList={setProductsList}/>
 
             <section className="products-list mb-3">
                 <h2 className="text-center mb-4">
