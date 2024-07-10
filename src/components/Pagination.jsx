@@ -55,7 +55,7 @@ const Pagination = ({ total, setProductsList }) => {
                 <button className="btn-primary btn px-3 me-2" onClick={() => paginationOption('minus')}>
                     Prev
                 </button>
-                <button className="btn border">
+                <button className="btn border px-3 ">
                     {currentPageNumber}
                 </button>
                 <button className="btn-primary btn px-3 ms-2" onClick={() => paginationOption('plus')}>
