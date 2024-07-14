@@ -1,24 +1,25 @@
 import { useState } from "react"
 import { useLoaderData } from "react-router-dom"
 // utils func
-import fetchProductsCategories from "../../utils/fetchSelectedCategoryProducts"
+import fetchDataFromDB from "../../utils/fetchDataFromDB"
 
 
-const SearchAndFilter = ({setProductsList}) => {
+const SearchAndFilter = ({ setAvailableProducts, setUpdatedURL, setProductsList }) => {
     const { categories } = useLoaderData()
     // console.log(categories);
 
     const [disabledOption, setDisabledOption] = useState(false)
-    const [selectedCategoryURL, setSelectedCategoryURL] = useState('')
-    const [selectedCategoryProducts, setSelectedCategoryProducts] = useState({})
+    const [selectedCategory, setSelectedCategory] = useState('')
 
-    const getData = async (url) => {
-        const filteredProducts = await fetchProductsCategories(url)
-        //    console.log(filteredProducts); 
-        setSelectedCategoryProducts(filteredProducts)
+    const getData = async (category) => {
+        setUpdatedURL(`/category/${category}`)
 
-        // OVOVOVOVVOOVOV
-        // setProductsList(filteredProducts.products)
+        const filteredProducts = await fetchDataFromDB(`/category/${category}`, '?limit=12&skip=0')
+        console.log(filteredProducts);
+        // setSelectedCategoryProducts(filteredProducts)
+
+        setAvailableProducts(filteredProducts.total)
+        setProductsList(filteredProducts.products)
     }
 
     const handleSubmit = e => {
@@ -26,16 +27,13 @@ const SearchAndFilter = ({setProductsList}) => {
         // console.log(e.target.elements);
         // console.log(e.target.elements[0].value);
         getData(e.target.elements[0].value)
-        setSelectedCategoryURL(e.target.elements[0].value)
+        setSelectedCategory(e.target.elements[0].value)
     }
 
     const handleReset = () => {
         setDisabledOption(false)
-        setSelectedCategoryURL('')
+        setSelectedCategory('')
     }
-
-    // console.log(selectedCategoryURL);
-    console.log(selectedCategoryProducts);
 
     return (
         <section className="search-filter-option mb-3">
@@ -44,8 +42,8 @@ const SearchAndFilter = ({setProductsList}) => {
                     <select className="form-select" id="">
                         {categories.map(category => {
                             // console.log(category);
-                            return <option key={category.slug} value={category.url}>
-                                {category.name}
+                            return <option key={category} value={category} className="capitalize">
+                                {category}
                             </option>
                         })}
                     </select>
@@ -61,8 +59,6 @@ const SearchAndFilter = ({setProductsList}) => {
                     )}
                 </div>
             </form>
-
-
         </section>
     )
 }

@@ -1,16 +1,16 @@
 import { useLoaderData } from "react-router-dom"
 // utils func
-import fetchProductsListFromDB from "../utils/fetchProductsListFromDB"
-import fetchProductsCategories from "../utils/fetchProductsCategories"
+import fetchDataFromDB from "../utils/fetchDataFromDB"
 // components
 import PageHeader from "../components/PageHeader"
 import ProductsList from "../components/dashboardPage/ProductsList"
 import NoProductsAvailable from "../components/dashboardPage/NoProductsAvailable"
 
+
 // LOADER
 export const loader = async () => {
-  const listOfProductsFromDB = await fetchProductsListFromDB()
-  const categories = await fetchProductsCategories()
+  const listOfProductsFromDB = await fetchDataFromDB('', '?limit=12&skip=0')
+  const categories = await fetchDataFromDB('', '/category-list')
 
   return { listOfProductsFromDB, categories }
 }
@@ -24,7 +24,7 @@ const Dashboard = () => {
         <PageHeader page='Dashboard' />
 
         {listOfProductsFromDB && listOfProductsFromDB.products.length > 0 ? (
-          <ProductsList listOfProductsFromDB={listOfProductsFromDB} />
+          <ProductsList />
         ) : (
           <NoProductsAvailable />
         )}

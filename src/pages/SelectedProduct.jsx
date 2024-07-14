@@ -1,17 +1,17 @@
 import { useLoaderData, Link } from "react-router-dom"
 // utils 
-import fetchSelectedProductDetailsFromDB from "../utils/fetchSelectedProductDetailsFromDB"
+import fetchDataFromDB from "../utils/fetchDataFromDB"
 // components
 import ImagesGalleryBox from "../components/selectedProductPage/ImagesGalleryBox"
 import ProductDataBox from "../components/selectedProductPage/ProductDataBox"
 import DescriptionBox from "../components/selectedProductPage/DescriptionBox"
 import ReviewsBox from "../components/selectedProductPage/ReviewsBox"
 
+
 // LOADER
 export const loader = async ({ params }) => {
-    const selectedProductDetails = await fetchSelectedProductDetailsFromDB(params.id)
+    const selectedProductDetails = await fetchDataFromDB('', `/${params.id}`)
 
-    // console.log(selectedProductDetails);
     return selectedProductDetails
 }
 

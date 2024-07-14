@@ -1,17 +1,22 @@
 import { useState } from "react";
+import { useLoaderData } from "react-router-dom";
 // component
 import ProductsListCard from "./ProductsListCard";
 import Pagination from "../Pagination";
 import SearchAndFilter from "./SearchAndFilter";
 
-const ProductsList = ({ listOfProductsFromDB }) => {
-    // console.log(listOfProductsFromDB);
+
+const ProductsList = () => {
+    const { listOfProductsFromDB } = useLoaderData()
     const { products, total } = listOfProductsFromDB
+
+    const [availableProducts, setAvailableProducts] = useState(total)
+    const [updatedURL, setUpdatedURL] = useState('')
     const [productsList, setProductsList] = useState(products)
 
     return (
         <>
-            <SearchAndFilter setProductsList={setProductsList}/>
+            <SearchAndFilter setAvailableProducts={setAvailableProducts} setUpdatedURL={setUpdatedURL} setProductsList={setProductsList} />
 
             <section className="products-list mb-3">
                 <h2 className="text-center mb-4">
@@ -21,9 +26,9 @@ const ProductsList = ({ listOfProductsFromDB }) => {
                 <div className="row">
                     {productsList.map(product => <ProductsListCard key={product.id} product={product} />)}
                 </div>
-            </section>       
+            </section>
 
-            <Pagination total={total} setProductsList={setProductsList}/>
+            {availableProducts > 12 && <Pagination availableProducts={availableProducts} updatedURL={updatedURL} setProductsList={setProductsList} />}
         </>
     )
 }

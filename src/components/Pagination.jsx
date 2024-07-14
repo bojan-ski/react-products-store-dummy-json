@@ -1,13 +1,14 @@
 // utils func
-import fetchProductsListFromDB from "../utils/fetchProductsListFromDB"
+import fetchDataFromDB from "../utils/fetchDataFromDB"
 
 let productsListSkipNumber = 0
 let currentPageNumber = 1
 
-const Pagination = ({ total, setProductsList }) => {
+const Pagination = ({ availableProducts, updatedURL, setProductsList }) => {
     const updatedProductsList = async (productsListSkipNumber) => {
-        const { products } = await fetchProductsListFromDB(productsListSkipNumber)
+        const { products } = await fetchDataFromDB(updatedURL, `?limit=12&skip=${productsListSkipNumber}`)
         // console.log(products);
+
         setProductsList(products)
         return products
     }
@@ -23,15 +24,12 @@ const Pagination = ({ total, setProductsList }) => {
             currentPageNumber -= 1
         }
 
-        // console.log(productsListSkipNumber);
-        // console.log(currentPageNumber);
-
         if (productsListSkipNumber <= 0) {
             productsListSkipNumber = 0
             currentPageNumber = 1
             // call func
             updatedProductsList(productsListSkipNumber)
-        } else if (productsListSkipNumber > total) {
+        } else if (productsListSkipNumber > availableProducts) {
             productsListSkipNumber = 0
             currentPageNumber = 1
             // call func
@@ -62,11 +60,11 @@ const Pagination = ({ total, setProductsList }) => {
                     Next
                 </button>
                 <button className="btn-info btn px-3 ms-2" onClick={() => {
-                    productsListSkipNumber = Math.floor(total / 12) * 12
-                    currentPageNumber = Math.ceil(total / 12)
+                    productsListSkipNumber = Math.floor(availableProducts / 12) * 12
+                    currentPageNumber = Math.ceil(availableProducts / 12)
                     updatedProductsList(productsListSkipNumber)
                 }}>
-                    {Math.ceil(total / 12)}
+                    {Math.ceil(availableProducts / 12)}
                 </button>
             </div>
 
