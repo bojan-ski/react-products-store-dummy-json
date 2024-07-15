@@ -1,22 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 // component
 import ProductsListCard from "./ProductsListCard";
 import Pagination from "../Pagination";
 import SearchAndFilter from "./SearchAndFilter";
+import { useGlobalContext } from "../../context";
 
 
 const ProductsList = () => {
     const { listOfProductsFromDB } = useLoaderData()
     const { products, total } = listOfProductsFromDB
 
-    const [availableProducts, setAvailableProducts] = useState(total)
-    const [updatedURL, setUpdatedURL] = useState('')
-    const [productsList, setProductsList] = useState(products)
+    const { availableProducts, setAvailableProducts, productsList, setProductsList, updatedURL } = useGlobalContext()
+
+    useEffect(() => {
+        setAvailableProducts(total)
+        setProductsList(products)
+    }, [])
 
     return (
         <>
-            <SearchAndFilter setAvailableProducts={setAvailableProducts} setUpdatedURL={setUpdatedURL} setProductsList={setProductsList} />
+            <SearchAndFilter />
 
             <section className="products-list mb-3">
                 <h2 className="text-center mb-4">
@@ -24,7 +28,11 @@ const ProductsList = () => {
                 </h2>
 
                 <div className="row">
-                    {productsList.map(product => <ProductsListCard key={product.id} product={product} />)}
+                    {!productsList || productsList.length == 0 ? (
+                        <h1>No products available</h1>
+                    ) : (
+                        productsList?.map(product => <ProductsListCard key={product.id} product={product} />)
+                    )}
                 </div>
             </section>
 

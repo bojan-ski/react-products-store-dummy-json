@@ -1,28 +1,19 @@
 import { useState } from "react"
 import { useLoaderData } from "react-router-dom"
+// context
+import { useGlobalContext } from "../../context"
 // utils func
 import fetchDataFromDB from "../../utils/fetchDataFromDB"
+import SearchFeature from "./SearchFeature"
 
 
-const SearchAndFilter = ({ setAvailableProducts, setUpdatedURL, setProductsList }) => {
+const SearchAndFilter = () => {
     const { listOfProductsFromDB, categories } = useLoaderData()
+    const { setAvailableProducts, setUpdatedURL, setProductsList } = useGlobalContext()
 
     const [disabledOption, setDisabledOption] = useState(false)
     const [searchTerm, setSearchTerm] = useState('')
-    const [selectedCategory, setSelectedCategory] = useState('') 
-
-    const handleSearchProduct = async e => {
-        e.preventDefault()
-
-        if(!searchTerm) return alert('please enter search term')
-
-        setDisabledOption(true)
-
-        const searchResults = await fetchDataFromDB(`/search`, `?q=${searchTerm}`)
-
-        setAvailableProducts(searchResults.total)
-        setProductsList(searchResults.products)
-    }
+    const [selectedCategory, setSelectedCategory] = useState('')
 
 
     const handleApplySelectedFilterOption = async (e) => {
@@ -54,7 +45,15 @@ const SearchAndFilter = ({ setAvailableProducts, setUpdatedURL, setProductsList 
 
                 {/* row item 1 */}
                 <div className="search-option col-12 col-md-6 mb-3">
-                    <form onSubmit={handleSearchProduct} className="text-center">
+                    <SearchFeature
+                        searchTerm={searchTerm}
+                        setSearchTerm={setSearchTerm}
+                        disabledOption={disabledOption}
+                        setDisabledOption={setDisabledOption}
+                        handleResetFilterOption={handleResetFilterOption}
+                    />
+
+                    {/* <form onSubmit={handleSearchProduct} className="text-center">
                         <input type="text" className="form-control mb-3" value={searchTerm} placeholder="Enter search term" onChange={e => setSearchTerm(e.target.value)} disabled={disabledOption}/>
 
                         {!disabledOption && (
@@ -67,7 +66,7 @@ const SearchAndFilter = ({ setAvailableProducts, setUpdatedURL, setProductsList 
                         <button type="button" className="fw-bold btn btn-warning w-100" onClick={handleResetFilterOption}>
                             Reset
                         </button>
-                    )}
+                    )} */}
                 </div>
 
                 {/* row item 2 */}
