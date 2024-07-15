@@ -2,34 +2,18 @@ import { useState } from "react"
 import { useLoaderData } from "react-router-dom"
 // context
 import { useGlobalContext } from "../../context"
-// utils func
-import fetchDataFromDB from "../../utils/fetchDataFromDB"
+// components
 import SearchFeature from "./SearchFeature"
+import FilterFeature from "./FilterFeature"
 
 
 const SearchAndFilter = () => {
-    const { listOfProductsFromDB, categories } = useLoaderData()
-    const { setAvailableProducts, setUpdatedURL, setProductsList } = useGlobalContext()
+    const { listOfProductsFromDB } = useLoaderData()
+    const { setAvailableProducts, setProductsList } = useGlobalContext()
 
     const [disabledOption, setDisabledOption] = useState(false)
     const [searchTerm, setSearchTerm] = useState('')
     const [selectedCategory, setSelectedCategory] = useState('')
-
-
-    const handleApplySelectedFilterOption = async (e) => {
-        e.preventDefault()
-
-        const selectedCategory = e.target.elements[0].value
-
-        setDisabledOption(true)
-        setUpdatedURL(`/category/${selectedCategory}`)
-        setSelectedCategory(selectedCategory)
-
-        const filteredProducts = await fetchDataFromDB(`/category/${selectedCategory}`, '?limit=12&skip=0')
-
-        setAvailableProducts(filteredProducts.total)
-        setProductsList(filteredProducts.products)
-    }
 
     const handleResetFilterOption = () => {
         setDisabledOption(false)
@@ -52,46 +36,16 @@ const SearchAndFilter = () => {
                         setDisabledOption={setDisabledOption}
                         handleResetFilterOption={handleResetFilterOption}
                     />
-
-                    {/* <form onSubmit={handleSearchProduct} className="text-center">
-                        <input type="text" className="form-control mb-3" value={searchTerm} placeholder="Enter search term" onChange={e => setSearchTerm(e.target.value)} disabled={disabledOption}/>
-
-                        {!disabledOption && (
-                            <button type="submit" className="fw-bold btn btn-success w-100">
-                                Search
-                            </button>
-                        )}
-                    </form>
-                    {disabledOption && (
-                        <button type="button" className="fw-bold btn btn-warning w-100" onClick={handleResetFilterOption}>
-                            Reset
-                        </button>
-                    )} */}
                 </div>
 
                 {/* row item 2 */}
                 <div className="filter-option col-12 col-md-6 mb-3">
-                    <form onSubmit={handleApplySelectedFilterOption}>
-                        <select className="form-select mb-3" disabled={disabledOption}>
-                            {categories.map(category => {
-                                // console.log(category);
-                                return <option key={category} value={category} className="capitalize">
-                                    {category}
-                                </option>
-                            })}
-                        </select>
-
-                        {!disabledOption && (
-                            <button type="submit" className="fw-bold btn btn-success w-100">
-                                Apply
-                            </button>
-                        )}
-                    </form>
-                    {disabledOption && (
-                        <button type="button" className="fw-bold btn btn-warning w-100" onClick={handleResetFilterOption}>
-                            Reset
-                        </button>
-                    )}
+                    <FilterFeature
+                        disabledOption={disabledOption}
+                        setDisabledOption={setDisabledOption}
+                        setSelectedCategory={setSelectedCategory}
+                        handleResetFilterOption={handleResetFilterOption}
+                    />
                 </div>
             </div>
         </section>

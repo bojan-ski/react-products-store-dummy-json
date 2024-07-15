@@ -11,7 +11,7 @@ export const AppProvider = ({ children }) => {
         availableProducts, // ProductsList
         setAvailableProducts, // ProductsList, SearchFeature
         updatedURL, // ProductsList
-        setUpdatedURL, // SearchAndFilter
+        setUpdatedURL, // FilterFeature
         productsList, // ProductsList, 
         setProductsList // ProductsList, SearchFeature
     }}>
