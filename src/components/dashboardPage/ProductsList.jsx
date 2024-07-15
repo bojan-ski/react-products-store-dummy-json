@@ -20,7 +20,7 @@ const ProductsList = () => {
 
             <section className="products-list mb-3">
                 <h2 className="text-center mb-4">
-                    {total} products available
+                    {availableProducts} products available
                 </h2>
 
                 <div className="row">

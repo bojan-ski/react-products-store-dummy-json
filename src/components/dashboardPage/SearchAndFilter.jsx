@@ -5,60 +5,96 @@ import fetchDataFromDB from "../../utils/fetchDataFromDB"
 
 
 const SearchAndFilter = ({ setAvailableProducts, setUpdatedURL, setProductsList }) => {
-    const { categories } = useLoaderData()
-    // console.log(categories);
+    const { listOfProductsFromDB, categories } = useLoaderData()
 
     const [disabledOption, setDisabledOption] = useState(false)
-    const [selectedCategory, setSelectedCategory] = useState('')
+    const [searchTerm, setSearchTerm] = useState('')
+    const [selectedCategory, setSelectedCategory] = useState('') 
 
-    const getData = async (category) => {
-        setUpdatedURL(`/category/${category}`)
+    const handleSearchProduct = async e => {
+        e.preventDefault()
 
-        const filteredProducts = await fetchDataFromDB(`/category/${category}`, '?limit=12&skip=0')
-        console.log(filteredProducts);
-        // setSelectedCategoryProducts(filteredProducts)
+        if(!searchTerm) return alert('please enter search term')
+
+        setDisabledOption(true)
+
+        const searchResults = await fetchDataFromDB(`/search`, `?q=${searchTerm}`)
+
+        setAvailableProducts(searchResults.total)
+        setProductsList(searchResults.products)
+    }
+
+
+    const handleApplySelectedFilterOption = async (e) => {
+        e.preventDefault()
+
+        const selectedCategory = e.target.elements[0].value
+
+        setDisabledOption(true)
+        setUpdatedURL(`/category/${selectedCategory}`)
+        setSelectedCategory(selectedCategory)
+
+        const filteredProducts = await fetchDataFromDB(`/category/${selectedCategory}`, '?limit=12&skip=0')
 
         setAvailableProducts(filteredProducts.total)
         setProductsList(filteredProducts.products)
     }
 
-    const handleSubmit = e => {
-        e.preventDefault()
-        // console.log(e.target.elements);
-        // console.log(e.target.elements[0].value);
-        getData(e.target.elements[0].value)
-        setSelectedCategory(e.target.elements[0].value)
-    }
-
-    const handleReset = () => {
+    const handleResetFilterOption = () => {
         setDisabledOption(false)
-        setSelectedCategory('')
+        setSelectedCategory('beauty')
+        setSearchTerm('')
+        setAvailableProducts(listOfProductsFromDB.total)
+        setProductsList(listOfProductsFromDB.products)
     }
 
     return (
-        <section className="search-filter-option mb-3">
-            <form onSubmit={handleSubmit}>
-                <div className="input-group">
-                    <select className="form-select" id="">
-                        {categories.map(category => {
-                            // console.log(category);
-                            return <option key={category} value={category} className="capitalize">
-                                {category}
-                            </option>
-                        })}
-                    </select>
+        <section className="search-filter-option mb-5">
+            <div className="row">
 
-                    {!disabledOption ? (
-                        <button type="submit" className="fw-bold btn btn-danger">
-                            Apply
-                        </button>
-                    ) : (
-                        <button type="button" className="fw-bold btn btn-warning" onClick={handleReset}>
+                {/* row item 1 */}
+                <div className="search-option col-12 col-md-6 mb-3">
+                    <form onSubmit={handleSearchProduct} className="text-center">
+                        <input type="text" className="form-control mb-3" value={searchTerm} placeholder="Enter search term" onChange={e => setSearchTerm(e.target.value)} disabled={disabledOption}/>
+
+                        {!disabledOption && (
+                            <button type="submit" className="fw-bold btn btn-success w-100">
+                                Search
+                            </button>
+                        )}
+                    </form>
+                    {disabledOption && (
+                        <button type="button" className="fw-bold btn btn-warning w-100" onClick={handleResetFilterOption}>
                             Reset
                         </button>
                     )}
                 </div>
-            </form>
+
+                {/* row item 2 */}
+                <div className="filter-option col-12 col-md-6 mb-3">
+                    <form onSubmit={handleApplySelectedFilterOption}>
+                        <select className="form-select mb-3" disabled={disabledOption}>
+                            {categories.map(category => {
+                                // console.log(category);
+                                return <option key={category} value={category} className="capitalize">
+                                    {category}
+                                </option>
+                            })}
+                        </select>
+
+                        {!disabledOption && (
+                            <button type="submit" className="fw-bold btn btn-success w-100">
+                                Apply
+                            </button>
+                        )}
+                    </form>
+                    {disabledOption && (
+                        <button type="button" className="fw-bold btn btn-warning w-100" onClick={handleResetFilterOption}>
+                            Reset
+                        </button>
+                    )}
+                </div>
+            </div>
         </section>
     )
 }
