@@ -11,7 +11,7 @@ const ProductsList = () => {
     const { listOfProductsFromDB } = useLoaderData()
     const { products, total } = listOfProductsFromDB
 
-    const { availableProducts, setAvailableProducts, productsList, setProductsList, updatedURL } = useGlobalContext()
+    const { availableProducts, setAvailableProducts, productsList, setProductsList } = useGlobalContext()
 
     useEffect(() => {
         setAvailableProducts(total)
@@ -36,7 +36,7 @@ const ProductsList = () => {
                 </div>
             </section>
 
-            {availableProducts > 12 && <Pagination availableProducts={availableProducts} updatedURL={updatedURL} setProductsList={setProductsList} />}
+            {availableProducts > 12 && <Pagination />}
         </>
     )
 }

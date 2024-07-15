@@ -9,7 +9,7 @@ import FilterFeature from "./FilterFeature"
 
 const SearchAndFilter = () => {
     const { listOfProductsFromDB } = useLoaderData()
-    const { setAvailableProducts, setProductsList } = useGlobalContext()
+    const { setAvailableProducts, setProductsList, setCurrentPageNumber } = useGlobalContext()
 
     const [disabledOption, setDisabledOption] = useState(false)
     const [searchTerm, setSearchTerm] = useState('')
@@ -21,6 +21,7 @@ const SearchAndFilter = () => {
         setSearchTerm('')
         setAvailableProducts(listOfProductsFromDB.total)
         setProductsList(listOfProductsFromDB.products)
+        setCurrentPageNumber(1)
     }
 
     return (

@@ -1,10 +1,13 @@
 // utils func
 import fetchDataFromDB from "../utils/fetchDataFromDB"
+// context 
+import { useGlobalContext } from "../context"
 
 let productsListSkipNumber = 0
-let currentPageNumber = 1
 
-const Pagination = ({ availableProducts, updatedURL, setProductsList }) => {
+const Pagination = () => {
+    const {availableProducts, updatedURL, setProductsList, currentPageNumber, setCurrentPageNumber} = useGlobalContext()
+
     const updatedProductsList = async (productsListSkipNumber) => {
         const { products } = await fetchDataFromDB(updatedURL, `?limit=12&skip=${productsListSkipNumber}`)
         // console.log(products);
@@ -16,22 +19,26 @@ const Pagination = ({ availableProducts, updatedURL, setProductsList }) => {
     const paginationOption = (term) => {
         if (term === 'plus') {
             productsListSkipNumber += 12
-            currentPageNumber += 1
+            // currentPageNumber += 1
+            setCurrentPageNumber(curState => curState + 1)
         }
 
         if (term === 'minus') {
             productsListSkipNumber -= 12
-            currentPageNumber -= 1
+            // currentPageNumber -= 1
+            setCurrentPageNumber(curState => curState - 1)
         }
 
         if (productsListSkipNumber <= 0) {
             productsListSkipNumber = 0
-            currentPageNumber = 1
+            // currentPageNumber = 1
+            setCurrentPageNumber(1)
             // call func
             updatedProductsList(productsListSkipNumber)
         } else if (productsListSkipNumber > availableProducts) {
             productsListSkipNumber = 0
-            currentPageNumber = 1
+            // currentPageNumber = 1
+            setCurrentPageNumber(1)
             // call func
             updatedProductsList(productsListSkipNumber)
         } else {
@@ -45,7 +52,7 @@ const Pagination = ({ availableProducts, updatedURL, setProductsList }) => {
             <div className="number-of-pages">
                 <button className="btn-info btn px-3 me-2" onClick={() => {
                     productsListSkipNumber = 0
-                    currentPageNumber = 1
+                    setCurrentPageNumber(1)
                     updatedProductsList(productsListSkipNumber)
                 }}>
                     1
@@ -61,7 +68,7 @@ const Pagination = ({ availableProducts, updatedURL, setProductsList }) => {
                 </button>
                 <button className="btn-info btn px-3 ms-2" onClick={() => {
                     productsListSkipNumber = Math.floor(availableProducts / 12) * 12
-                    currentPageNumber = Math.ceil(availableProducts / 12)
+                    setCurrentPageNumber(Math.ceil(availableProducts / 12))
                     updatedProductsList(productsListSkipNumber)
                 }}>
                     {Math.ceil(availableProducts / 12)}

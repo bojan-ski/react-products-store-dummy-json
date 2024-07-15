@@ -3,8 +3,8 @@ import { useGlobalContext } from "../../context"
 // utils func
 import fetchDataFromDB from "../../utils/fetchDataFromDB"
 
-const SearchFeature = ({searchTerm, setSearchTerm, disabledOption, setDisabledOption, handleResetFilterOption}) => {
-    const {setAvailableProducts, setProductsList} = useGlobalContext()
+const SearchFeature = ({ searchTerm, setSearchTerm, disabledOption, setDisabledOption, handleResetFilterOption }) => {
+    const { setAvailableProducts, setProductsList, setCurrentPageNumber } = useGlobalContext()
 
     const handleSearchProduct = async e => {
         e.preventDefault()
@@ -17,6 +17,7 @@ const SearchFeature = ({searchTerm, setSearchTerm, disabledOption, setDisabledOp
 
         setAvailableProducts(searchResults.total)
         setProductsList(searchResults.products)
+        setCurrentPageNumber(``)
     }
 
     return (

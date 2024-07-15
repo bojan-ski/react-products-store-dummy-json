@@ -6,7 +6,7 @@ import fetchDataFromDB from "../../utils/fetchDataFromDB"
 
 const FilterFeature = ({ disabledOption, setDisabledOption, setSelectedCategory, handleResetFilterOption }) => {
     const { categories } = useLoaderData()
-    const { setAvailableProducts, setUpdatedURL, setProductsList } = useGlobalContext()
+    const { setAvailableProducts, setUpdatedURL, setProductsList, setCurrentPageNumber} = useGlobalContext()
 
     const handleApplySelectedFilterOption = async (e) => {
         e.preventDefault()
@@ -21,6 +21,7 @@ const FilterFeature = ({ disabledOption, setDisabledOption, setSelectedCategory,
 
         setAvailableProducts(filteredProducts.total)
         setProductsList(filteredProducts.products)
+        setCurrentPageNumber(1)
     }
 
     return (
