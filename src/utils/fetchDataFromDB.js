@@ -1,7 +1,7 @@
 import axios from "axios"
 
 const fetchDataFromDB = async (updatedURL, path) => {
-    const url = 'https://dummyjson.com/products'
+    const url = `${import.meta.env.VITE_FIREBASE_PRODUCTS_API_URL}`
     // console.log(updatedURL);
     // console.log(path);
 
