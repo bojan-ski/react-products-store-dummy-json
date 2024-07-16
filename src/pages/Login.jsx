@@ -21,10 +21,10 @@ const Login = () => {
                     </h3>
 
                     {/* login email */}
-                    <FormInput label='Email address' name="loginEmail" type='email' />
+                    <FormInput label='Email address' name="loginEmail" type='email' required={true}/>
 
                     {/* login password */}
-                    <FormInput label='Password' name="loginPassword" type='password' />
+                    <FormInput label='Password' name="loginPassword" type='password' required={true}/>
 
                     {/* login submit btn */}
                     <button type="submit" className="btn btn-primary">
