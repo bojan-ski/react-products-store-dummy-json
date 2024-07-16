@@ -6,6 +6,7 @@ import Dashboard from "./pages/Dashboard"
 import SelectedProduct from "./pages/SelectedProduct"
 import SignUp from "./pages/SignUp"
 import Login from "./pages/Login"
+import Profile from "./pages/Profile"
 import About from "./pages/About"
 import ContactUs from "./pages/ContactUs"
 import ErrorPage from "./pages/ErrorPage"
@@ -13,6 +14,7 @@ import ErrorPage from "./pages/ErrorPage"
 // LOADERS
 import { loader as listOfProductsLoader } from "./pages/Dashboard"
 import { loader as selectedProductLoader } from "./pages/SelectedProduct"
+
 
 const router = createBrowserRouter([
   {
@@ -41,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: 'about',
         element: <About />,
+      },
+      {
+        path: 'profile',
+        element: <Profile />,
       },
       {
         path: 'about',

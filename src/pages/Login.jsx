@@ -9,7 +9,7 @@ const Login = () => {
         const enteredEmail = e.target.elements[0].value.trim()
         const enteredPassword = e.target.elements[1].value
 
-        loginUser(enteredEmail, enteredPassword)
+        loginUser(enteredEmail, enteredPassword)       
 
         e.target.elements[0].value = ''
         e.target.elements[1].value = ''
@@ -24,10 +24,10 @@ const Login = () => {
                     </h3>
 
                     {/* login email */}
-                    <FormInput label='Email address' name="loginEmail" type='email' required={true}/>
+                    <FormInput label='Email address' name="loginEmail" type='email' required={true} />
 
                     {/* login password */}
-                    <FormInput label='Password' name="loginPassword" type='password' required={true}/>
+                    <FormInput label='Password' name="loginPassword" type='password' required={true} />
 
                     {/* login submit btn */}
                     <button type="submit" className="btn btn-primary">

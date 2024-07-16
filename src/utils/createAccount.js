@@ -3,6 +3,7 @@ import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase
 import { doc, setDoc, serverTimestamp } from "firebase/firestore"
 import { db } from '../firebase.config'
 
+
 const createAccount = async (username, email, password) => {
     try {
         const auth = getAuth()
@@ -21,8 +22,13 @@ const createAccount = async (username, email, password) => {
 
         await setDoc(doc(db, 'users', newUser.uid), userCredentialsCopy)
 
+        //success message
         console.log('account created');
+
+        // navigate user
+        window.location.href = '/profile'
     } catch (error) {
+        //error message
         console.log(error);
     }
 
