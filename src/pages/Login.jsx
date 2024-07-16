@@ -1,15 +1,18 @@
 // components
 import FormInput from "../components/FormInput"
+import loginUser from "../utils/loginUser";
 
 const Login = () => {
     const handleLoginUserSubmit = e => {
         e.preventDefault()
 
-        console.log(e.target.elements[0].value);
-        console.log(e.target.elements[1].value);
+        const enteredEmail = e.target.elements[0].value.trim()
+        const enteredPassword = e.target.elements[1].value
 
-        // e.target.elements[0].value = ''
-        // e.target.elements[1].value = ''
+        loginUser(enteredEmail, enteredPassword)
+
+        e.target.elements[0].value = ''
+        e.target.elements[1].value = ''
     }
 
     return (
