@@ -6,6 +6,8 @@ import { getAuth, onAuthStateChanged, signOut } from "firebase/auth"
 const Profile = () => {
   const auth = getAuth()
 
+  console.log(auth.currentUser);
+
   const [userData, setUserData] = useState({
     userID: '',
     userName: ''
