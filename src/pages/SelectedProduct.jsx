@@ -18,12 +18,14 @@ export const loader = async ({ params }) => {
 const SelectedProduct = () => {
     const { availabilityStatus, brand, category, description, dimensions, discountPercentage, images, minimumOrderQuantity, price, rating, returnPolicy, reviews, shippingInformation, stock, tags, thumbnail, title, warrantyInformation, weight } = useLoaderData()
 
+    const urlBackPath = window.location.pathname.split('/').includes('compare')
+
     return (
         <div className="selected-product-page my-5">
             <div className="container">
 
                 <section className="d-flex align-items-center justify-content-between my-5">
-                    <Link to='/' className="btn btn-warning">
+                    <Link to={urlBackPath ? '/compare' : '/'} className="btn btn-warning">
                         Back
                     </Link>
                     <h2 className="fw-bold mb-0">

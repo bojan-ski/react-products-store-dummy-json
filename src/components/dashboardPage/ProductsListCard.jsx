@@ -1,39 +1,54 @@
 import { Link } from "react-router-dom";
+// context
+import { useGlobalContext } from "../../context";
 
 const ProductsListCard = ({ product }) => {
     // console.log(product);
     const { id, brand, category, price, rating, thumbnail, title } = product
 
-    const handleCompare = () => {
-        // localStorage.setItem('compare', JSON.stringify(product))
-        // console.log(product);
-        // Retrieve the existing data
-        let existingData = localStorage.getItem('compare');
+    const { compareProductsList, setCompareProductsList } = useGlobalContext()
 
-        // If there's no existing data, initialize an empty array
-        let itemsArray = existingData ? JSON.parse(existingData) : [];
-
-        console.log(itemsArray.length);
-
-        if (itemsArray.length > 2) {
-            console.log(3);
+    const handleAddProductToCompareProductsList = () => {
+        if (compareProductsList.length > 1) {
+            alert('only two products can be compared')
         } else {
-            // Add the new item to the array
-            itemsArray.push(product);
-
-            // Save the updated array back to local storage
-            localStorage.setItem('compare', JSON.stringify(itemsArray));
+            setCompareProductsList(currState => [...currState, product])
         }
+        // console.log(compareProducts);
+
+        // let existingData = localStorage.getItem('compare');
+        // let itemsArray = existingData ? JSON.parse(existingData) : [];
+
+        // if (itemsArray.length > 2) {
+        //     console.log(3);
+        // } else {           
+        //     itemsArray.push(product);
+
+        //     localStorage.setItem('compare', JSON.stringify(itemsArray));
+        // }
     }
+
+    const handleRemoveProductFromCompareProductsList = (id) => {
+        const updatedCompareProductsList = compareProductsList.filter(product => product.id !== id);
+        setCompareProductsList(updatedCompareProductsList);
+    }
+
+    const isProductInCompareList = compareProductsList && compareProductsList.some(product => product.id === id);
 
     return (
         <div className="col-12 col-md-6 col-lg-4 mb-4">
-
             <div className="card-details rounded rounded-4 p-3">
+                
                 <div className="btn-container mb-3 pb-2 border-bottom">
-                    <button className="btn btn-warning" onClick={handleCompare}>
-                        Compare
-                    </button>
+                    {isProductInCompareList ? (
+                        <button className="btn btn-danger" onClick={() => handleRemoveProductFromCompareProductsList(id)}>
+                            Remove
+                        </button>
+                    ) : (
+                        <button className="btn btn-warning" onClick={handleAddProductToCompareProductsList}>
+                            Compare
+                        </button>
+                    )}
                 </div>
 
                 <div className="card-details-header text-center mb-2">

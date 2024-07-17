@@ -6,6 +6,7 @@ import Dashboard from "./pages/Dashboard"
 import SelectedProduct from "./pages/SelectedProduct"
 import SignUp from "./pages/SignUp"
 import Login from "./pages/Login"
+import CompareProducts from "./pages/CompareProducts"
 import Profile from "./pages/Profile"
 import About from "./pages/About"
 import ContactUs from "./pages/ContactUs"
@@ -41,8 +42,13 @@ const router = createBrowserRouter([
         element: <SignUp />,
       },
       {
-        path: 'about',
-        element: <About />,
+        path: 'compare',
+        element: <CompareProducts />,
+      },
+      {
+        path: 'compare/:id',
+        element: <SelectedProduct />,
+        loader: selectedProductLoader
       },
       {
         path: 'profile',

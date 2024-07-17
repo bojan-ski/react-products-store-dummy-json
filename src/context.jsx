@@ -3,14 +3,16 @@ import { useContext, createContext, useState } from "react";
 const AppContext = createContext()
 
 export const AppProvider = ({ children }) => {
-
-    //search and filter options
+    // search and filter options
     const [availableProducts, setAvailableProducts] = useState(0)
     const [updatedURL, setUpdatedURL] = useState('')
     const [productsList, setProductsList] = useState([])
 
-    //pagination
+    // pagination
     const [currentPageNumber, setCurrentPageNumber] = useState(1)
+
+    // compare products
+    const [compareProductsList, setCompareProductsList] = useState([])
 
     return <AppContext.Provider value={{
         availableProducts, // ProductsList, Pagination
@@ -20,7 +22,9 @@ export const AppProvider = ({ children }) => {
         productsList, // ProductsList, 
         setProductsList, // ProductsList, SearchFeature, FilterFeature, Pagination
         currentPageNumber, // Pagination
-        setCurrentPageNumber // Pagination, SearchFeature, FilterFeature, SearchAndFilter
+        setCurrentPageNumber, // Pagination, SearchFeature, FilterFeature, SearchAndFilter
+        compareProductsList, // ProductsListCard, CompareProducts
+        setCompareProductsList, // ProductsListCard
     }}>
         {children}
     </AppContext.Provider>
