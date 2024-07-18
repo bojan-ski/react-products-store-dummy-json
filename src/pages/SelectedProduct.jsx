@@ -37,7 +37,7 @@ const SelectedProduct = () => {
 
                 <PageHeader page={title} />
 
-                <section className="recipe-details-main">
+                <section className="product-details">
                     <div className="row">
 
                         {/* row item 1 */}

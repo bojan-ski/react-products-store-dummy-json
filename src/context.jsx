@@ -15,7 +15,11 @@ export const AppProvider = ({ children }) => {
     const [compareProductsList, setCompareProductsList] = useState([])
 
     // cart
-    const [cartItems, setCartItems] = useState([])
+    const [cartItems, setCartItems] = useState({
+        cartID: crypto.randomUUID(),
+        cartItems: [],
+        grandTotal: 0
+    })
 
     return <AppContext.Provider value={{
         availableProducts, // ProductsList, Pagination
@@ -28,8 +32,8 @@ export const AppProvider = ({ children }) => {
         setCurrentPageNumber, // Pagination, SearchFeature, FilterFeature, SearchAndFilter
         compareProductsList, // ProductsListCard, CompareProducts
         setCompareProductsList, // ProductsListCard
-        cartItems, 
-        setCartItems,
+        cartItems, // Cart
+        setCartItems, // ProductDataBox
     }}>
         {children}
     </AppContext.Provider>

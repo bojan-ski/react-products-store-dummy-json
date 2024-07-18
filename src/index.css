@@ -69,7 +69,7 @@ main{
 }
 
 /* Selected product page */
-.selected-product-page .recipe-details-main img{
+.selected-product-page .product-details img{
   max-height: 500px;
 }
 

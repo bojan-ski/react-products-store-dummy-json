@@ -5,7 +5,7 @@ import PageHeader from "../components/PageHeader"
 
 
 const Cart = () => {
-    const { cartItems } = useGlobalContext
+    const { cartItems } = useGlobalContext()
     console.log(cartItems);
 
     return (
