@@ -15,6 +15,7 @@ import ErrorPage from "./pages/ErrorPage"
 // LOADERS
 import { loader as listOfProductsLoader } from "./pages/Dashboard"
 import { loader as selectedProductLoader } from "./pages/SelectedProduct"
+import Cart from "./pages/Cart"
 
 
 const router = createBrowserRouter([
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
         path: 'compare/:id',
         element: <SelectedProduct />,
         loader: selectedProductLoader
+      },
+      {
+        path: 'cart',
+        element: <Cart />,
       },
       {
         path: 'profile',

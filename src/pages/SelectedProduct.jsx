@@ -2,6 +2,7 @@ import { useLoaderData, Link } from "react-router-dom"
 // utils 
 import fetchDataFromDB from "../utils/fetchDataFromDB"
 // components
+import PageHeader from "../components/PageHeader"
 import ImagesGalleryBox from "../components/selectedProductPage/ImagesGalleryBox"
 import ProductDataBox from "../components/selectedProductPage/ProductDataBox"
 import DescriptionBox from "../components/selectedProductPage/DescriptionBox"
@@ -28,13 +29,13 @@ const SelectedProduct = () => {
                     <Link to={urlBackPath ? '/compare' : '/'} className="btn btn-warning">
                         Back
                     </Link>
-                    <h2 className="fw-bold mb-0">
-                        {title}
-                    </h2>
+
                     <h5 className={`fw-bold mb-0 ${availabilityStatus == "In Stock" ? 'text-success' : 'text-danger'}`}>
                         {availabilityStatus}
                     </h5>
                 </section>
+
+                <PageHeader page={title} />
 
                 <section className="recipe-details-main">
                     <div className="row">

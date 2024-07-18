@@ -14,6 +14,9 @@ export const AppProvider = ({ children }) => {
     // compare products
     const [compareProductsList, setCompareProductsList] = useState([])
 
+    // cart
+    const [cartItems, setCartItems] = useState([])
+
     return <AppContext.Provider value={{
         availableProducts, // ProductsList, Pagination
         setAvailableProducts, // ProductsList, SearchFeature, FilterFeature
@@ -25,6 +28,8 @@ export const AppProvider = ({ children }) => {
         setCurrentPageNumber, // Pagination, SearchFeature, FilterFeature, SearchAndFilter
         compareProductsList, // ProductsListCard, CompareProducts
         setCompareProductsList, // ProductsListCard
+        cartItems, 
+        setCartItems,
     }}>
         {children}
     </AppContext.Provider>

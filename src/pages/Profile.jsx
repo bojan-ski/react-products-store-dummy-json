@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react"
-import { useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 // firebase/firestore funcs
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth"
+import PageHeader from "../components/PageHeader"
 
 const Profile = () => {
   const auth = getAuth()
-
-  console.log(auth.currentUser);
+  // console.log(auth.currentUser);
 
   const [userData, setUserData] = useState({
     userID: '',
@@ -58,6 +58,7 @@ const Profile = () => {
 
   return (
     <div className="profile-page text-center">
+      <PageHeader page="Profile" />
       {auth.currentUser ? (
         <div>
           <h1>{userData.userName}</h1>

@@ -1,10 +1,10 @@
 const PageHeader = ({ page }) => {
     return (
-        <div className="page-header my-4">
-            <h2 className="text-center">
+        <section className="page-header my-5">
+            <h2 className="fw-bold text-center">
                 {page}
             </h2>
-        </div>
+        </section>
     )
 }
 
