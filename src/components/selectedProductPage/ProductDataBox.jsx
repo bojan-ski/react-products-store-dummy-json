@@ -36,18 +36,20 @@ const ProductDataBox = () => {
         // console.log(cartItem);
 
         setCartItems((prevState) => {
-            const updatedCartItems = [...prevState.cartItems, cartItem];
-            const updatedGrandTotal = updatedCartItems.reduce((acc, item) => acc + item.totalPrice, 0);
+            const updatedCartItems = [...prevState.cartItemsList, cartItem];
+            const updatedTotalQuantity = updatedCartItems.reduce((acc, item) => acc + item.quantity, 0);
+            const updatedOrderCost = updatedCartItems.reduce((acc, item) => acc + item.totalPrice, 0);
 
             return {
                 ...prevState,
-                cartItems: updatedCartItems,
-                grandTotal: updatedGrandTotal
+                cartItemsList: updatedCartItems,
+                totalQuantity: updatedTotalQuantity,
+                orderCost: updatedOrderCost.toFixed(2)
             };
         })
 
         // console.log(cartItem);
-        console.log('product added to cart');
+        alert('product added to cart')
     }
 
     return (

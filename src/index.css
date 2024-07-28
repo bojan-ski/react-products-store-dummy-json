@@ -73,6 +73,12 @@ main{
   max-height: 500px;
 }
 
+/* Cart page */
+/* CartItemsList component*/
+.cart-item-details .cart-item-details-1 img{
+  height: 100px;
+}
+
 /* ---------- FOOTER ---------- */
 .footer {
   font-weight: 600;

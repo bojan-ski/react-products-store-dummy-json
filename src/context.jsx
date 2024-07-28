@@ -17,8 +17,10 @@ export const AppProvider = ({ children }) => {
     // cart
     const [cartItems, setCartItems] = useState({
         cartID: crypto.randomUUID(),
-        cartItems: [],
-        grandTotal: 0
+        cartItemsList: [],
+        totalQuantity: 0,
+        shipping: 50,
+        orderCost: 0
     })
 
     return <AppContext.Provider value={{

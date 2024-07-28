@@ -3,6 +3,7 @@ import { useGlobalContext } from "../context"
 // components
 import PageHeader from "../components/PageHeader"
 import CartItemsList from "../components/cartPage/CartItemsList"
+import CartCostDetails from "../components/cartPage/CartCostDetails"
 
 
 const Cart = () => {
@@ -15,20 +16,17 @@ const Cart = () => {
 
             <div className="container">
 
-                {cartItems.cartItems && cartItems.cartItems.length > 0 ? (
+                {cartItems.cartItemsList && cartItems.cartItemsList.length > 0 ? (
                     <div className="row">
                         {/* row item 1 */}
-                        <div className="col-12 col-md-7">
+                        <section className="cart-items-details col-12 col-md-8 ">
                             <CartItemsList />
-                        </div>
-
-                        <div className="col-12 col-md-5">
-                            <section>
-                                Order details
-                            </section>
-                        </div>
+                        </section>
 
                         {/* row item 2 */}
+                        <section className="cart-cost-details col-12 col-md-4">
+                            <CartCostDetails />
+                        </section>
                     </div>
                 ) : (
                     <h1>Your cart is empty</h1>

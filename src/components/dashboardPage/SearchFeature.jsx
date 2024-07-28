@@ -17,7 +17,7 @@ const SearchFeature = ({ searchTerm, setSearchTerm, disabledOption, setDisabledO
 
         setAvailableProducts(searchResults.total)
         setProductsList(searchResults.products)
-        setCurrentPageNumber(``)
+        setCurrentPageNumber(1)
     }
 
     return (
