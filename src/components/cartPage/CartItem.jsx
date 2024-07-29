@@ -3,12 +3,12 @@ import { useGlobalContext } from "../../context";
 
 const CartItem = ({ cartItem }) => {
     // console.log(cartItem);
-    const { cartItems, setCartItems } = useGlobalContext()
+    const { setCartItems } = useGlobalContext()
     // console.log(cartItems);
 
     const { id, thumbnail, title, brand, category, price, quantity, totalPrice } = cartItem
 
-    const handleUpdatedAmount = (e) => {
+    const handleUpdatedCart = (e) => {
         e.preventDefault()
 
         setCartItems(prevState => {
@@ -33,14 +33,33 @@ const CartItem = ({ cartItem }) => {
         alert('Cart updated')
     }
 
-    console.log(cartItems);
+    const handleRemoveProduct = () => {
+        if (window.confirm('Are you sure you want to remove product?')){
+            setCartItems(prevState => {
+                const newCartItemsList = prevState.cartItemsList.filter(cartItem => cartItem.id !== id);
+    
+                const newTotalQuantity = newCartItemsList.reduce((acc, item) => acc + item.quantity, 0);
+                const newOrderCost = newCartItemsList.reduce((acc, item) => acc + item.totalPrice, 0);
+    
+                return {
+                    ...prevState,
+                    cartItemsList: newCartItemsList,
+                    totalQuantity: newTotalQuantity,
+                    orderCost: newOrderCost.toFixed(2),
+                };
+            });
+
+            alert('Product removed form cart')
+        }
+    }
+
 
     return (
         <div className="col-12 mb-3">
 
             <div className="bg-info cart-item-details rounded rounded-4 p-3 d-flex flex-row align-items-center justify-content-around">
 
-                <div className="cart-item-details-1">
+                <div className="cart-item-details-1 d-none d-lg-block">
                     <img src={thumbnail} alt={title} className="img-fluid" />
                 </div>
 
@@ -64,7 +83,7 @@ const CartItem = ({ cartItem }) => {
                 </div>
 
                 <div className="cart-item-details-3">
-                    <select className="form-select mb-2" value={quantity} onChange={handleUpdatedAmount}>
+                    <select className="form-select mb-2" value={quantity} onChange={handleUpdatedCart}>
                         {Array.from({ length: 10 }, (_, idx) => {
                             const amount = idx + 1
 
@@ -79,6 +98,12 @@ const CartItem = ({ cartItem }) => {
                     <p className='fw-bold mb-0'>
                         {totalPrice}
                     </p>
+                </div>
+
+                <div className="cart-item-details-3">
+                    <button className="btn btn-danger" onClick={handleRemoveProduct}>
+                        Remove
+                    </button>
                 </div>
             </div>
         </div>

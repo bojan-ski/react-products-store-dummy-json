@@ -16,7 +16,6 @@ export const AppProvider = ({ children }) => {
 
     // cart
     const [cartItems, setCartItems] = useState({
-        cartID: crypto.randomUUID(),
         cartItemsList: [],
         totalQuantity: 0,
         shipping: 50,
@@ -34,8 +33,8 @@ export const AppProvider = ({ children }) => {
         setCurrentPageNumber, // Pagination, SearchFeature, FilterFeature, SearchAndFilter
         compareProductsList, // ProductsListCard, CompareProducts
         setCompareProductsList, // ProductsListCard
-        cartItems, // Cart
-        setCartItems, // ProductDataBox
+        cartItems, // Cart, CartItem, CartCostDetails
+        setCartItems, // ProductDataBox, setCartItems, CartCostDetails
     }}>
         {children}
     </AppContext.Provider>

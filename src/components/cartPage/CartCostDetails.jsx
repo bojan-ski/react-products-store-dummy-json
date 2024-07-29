@@ -1,49 +1,86 @@
+import { Link } from 'react-router-dom'
 // context
 import { useGlobalContext } from '../../context'
 
 const CartCostDetails = () => {
-    const { cartItems } = useGlobalContext()
+    const { cartItems, setCartItems } = useGlobalContext()
+
+    const clearCart = () => {
+        if (window.confirm('Are you sure you want to clear the Cart?')) {
+            setCartItems({
+                cartItemsList: [],
+                totalQuantity: 0,
+                shipping: 50,
+                orderCost: 0
+            });
+
+            alert('Product removed form cart')
+        }
+    }
 
     return (
-        <div>
-            <h4 className='mb-3'>
-                CartCostDetails
+        <div className='bg-info px-4 py-3 rounded rounded-4'>
+            <h4 className='text-center mb-3'>
+                Order Details
             </h4>
 
-            <p className='mb-0'>
-                Total number of products:
-            </p>
-            <p className='fw-bold'>
-                {cartItems.cartItemsList.length}
-            </p>
+            <div className="row border-bottom pb-2 mb-3">
+                {/* row item 1 */}
+                <div className="col-12 col-md-6">
+                    <p className='mb-0'>
+                        Number of products:
+                    </p>
+                    <p className='fw-bold'>
+                        {cartItems.cartItemsList.length}
+                    </p>
+                </div>
+                {/* row item 2 */}
+                <div className="col-12 col-md-6">
+                    <p className='mb-0'>
+                        Total Quantity:
+                    </p>
+                    <p className='fw-bold'>
+                        {cartItems.totalQuantity}
+                    </p>
+                </div>
+                {/* row item 3 */}
+                <div className="col-12 col-md-6">
+                    <p className='mb-0'>
+                        Order Cost:
+                    </p>
+                    <p className='fw-bold'>
+                        {cartItems.orderCost}
+                    </p>
+                </div>
+                {/* row item 4 */}
+                <div className="col-12 col-md-6">
+                    <p className='mb-0'>
+                        Shipping Cost:
+                    </p>
+                    <p className='fw-bold'>
+                        {cartItems.shipping}
+                    </p>
+                </div>
+            </div>
 
-            <p className='mb-0'>
-                Total Quantity:
-            </p>
-            <p className='fw-bold'>
-                {cartItems.totalQuantity}
-            </p>
+            <div className="grand-total text-center">
+                <h5 className=''>
+                    Grand Total:
+                </h5>
+                <p className='fw-bold'>
+                    {+cartItems.orderCost + cartItems.shipping}
+                </p>
+            </div>
 
-            <p className='mb-0'>
-                Order Cost:
-            </p>
-            <p className='fw-bold'>
-                {cartItems.orderCost}
-            </p>
+            <div className="cart-cost-btn-container d-flex justify-content-between">
+                <Link to='/checkout' className='btn btn-success px-3 py-2'>
+                    Checkout
+                </Link>
 
-            <p className='mb-0'>
-                Shipping Cost:
-            </p>
-            <p className='fw-bold'>
-                {cartItems.shipping}
-            </p>
-
-            <p className='mb-0'>
-                Grand Total:
-            </p>
-            <p className='fw-bold'>
-                {+cartItems.orderCost + cartItems.shipping}
-            </p>
+                <button className='btn btn-danger px-3 py-2' onClick={clearCart}>
+                    Cancel
+                </button>
+            </div>
         </div>
     )
 }
