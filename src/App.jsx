@@ -7,6 +7,8 @@ import SelectedProduct from "./pages/SelectedProduct"
 import SignUp from "./pages/SignUp"
 import Login from "./pages/Login"
 import CompareProducts from "./pages/CompareProducts"
+import Cart from "./pages/Cart"
+import Checkout from "./pages/Checkout"
 import Profile from "./pages/Profile"
 import About from "./pages/About"
 import ContactUs from "./pages/ContactUs"
@@ -15,7 +17,6 @@ import ErrorPage from "./pages/ErrorPage"
 // LOADERS
 import { loader as listOfProductsLoader } from "./pages/Dashboard"
 import { loader as selectedProductLoader } from "./pages/SelectedProduct"
-import Cart from "./pages/Cart"
 
 
 const router = createBrowserRouter([
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
       {
         path: 'cart',
         element: <Cart />,
+      },
+      {
+        path: 'checkout',
+        element: <Checkout />,
       },
       {
         path: 'profile',

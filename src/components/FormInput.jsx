@@ -1,4 +1,4 @@
-const FormInput = ({ label, name, type, required }) => {
+const FormInput = ({ label, name, type,  required }) => {
     return (
         <div className="mb-3">
             <label htmlFor={name} className="form-label">

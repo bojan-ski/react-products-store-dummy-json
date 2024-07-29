@@ -22,6 +22,19 @@ export const AppProvider = ({ children }) => {
         orderCost: 0
     })
 
+    const clearCart = () => {
+        if (window.confirm('Are you sure you want to clear the Cart?')) {
+            setCartItems({
+                cartItemsList: [],
+                totalQuantity: 0,
+                shipping: 50,
+                orderCost: 0
+            });
+
+            alert('Product removed form cart')
+        }
+    }
+
     return <AppContext.Provider value={{
         availableProducts, // ProductsList, Pagination
         setAvailableProducts, // ProductsList, SearchFeature, FilterFeature
@@ -33,8 +46,9 @@ export const AppProvider = ({ children }) => {
         setCurrentPageNumber, // Pagination, SearchFeature, FilterFeature, SearchAndFilter
         compareProductsList, // ProductsListCard, CompareProducts
         setCompareProductsList, // ProductsListCard
-        cartItems, // Cart, CartItem, CartCostDetails
-        setCartItems, // ProductDataBox, setCartItems, CartCostDetails
+        cartItems, // Cart, CartItem, CartCostDetails, Checkout
+        setCartItems, // ProductDataBox, setCartItems, 
+        clearCart, // CartCostDetails, CheckoutForm
     }}>
         {children}
     </AppContext.Provider>

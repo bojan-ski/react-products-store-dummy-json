@@ -3,20 +3,7 @@ import { Link } from 'react-router-dom'
 import { useGlobalContext } from '../../context'
 
 const CartCostDetails = () => {
-    const { cartItems, setCartItems } = useGlobalContext()
-
-    const clearCart = () => {
-        if (window.confirm('Are you sure you want to clear the Cart?')) {
-            setCartItems({
-                cartItemsList: [],
-                totalQuantity: 0,
-                shipping: 50,
-                orderCost: 0
-            });
-
-            alert('Product removed form cart')
-        }
-    }
+    const { cartItems, clearCart } = useGlobalContext()    
 
     return (
         <div className='bg-info px-4 py-3 rounded rounded-4'>
