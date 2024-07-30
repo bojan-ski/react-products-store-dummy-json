@@ -1,4 +1,8 @@
-import { useContext, createContext, useState } from "react";
+import { useContext, createContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+// firebase/firestore funcs
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth"
+
 
 const AppContext = createContext()
 
@@ -14,7 +18,58 @@ export const AppProvider = ({ children }) => {
     // compare products
     const [compareProductsList, setCompareProductsList] = useState([])
 
-    // cart
+    // user details
+    const auth = getAuth()
+
+    const [userProfileDetails, setUserProfileDetails] = useState({
+        userID: '',
+        userName: ''
+    })
+
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                auth.currentUser ? (
+                    setUserProfileDetails({
+                        userID: user.uid,
+                        userName: user.displayName
+                    })
+                ) : (
+                    setUserProfileDetails({
+                        userID: '',
+                        userName: ''
+                    })
+                )
+            }
+        })
+    }, [])
+
+    // log out user
+    const navigate = useNavigate()
+
+    const logOutUser = async () => {
+        if (window.confirm('Are you sure you want to log out')) {
+            try {
+                await signOut(auth)
+
+                setUserProfileDetails({
+                    userID: '',
+                    userName: ''
+                })
+
+                // success message
+                console.log('you have successfully logged out');
+
+                // after the user has logged out, the user is redirected to the Dashboard page
+                navigate('/')
+            } catch (error) {
+                //error message
+                console.log(error);
+            }
+        }
+    }
+
+    // cart features
     const [cartItems, setCartItems] = useState({
         cartItemsList: [],
         totalQuantity: 0,
@@ -46,6 +101,8 @@ export const AppProvider = ({ children }) => {
         setCurrentPageNumber, // Pagination, SearchFeature, FilterFeature, SearchAndFilter
         compareProductsList, // ProductsListCard, CompareProducts
         setCompareProductsList, // ProductsListCard
+        userProfileDetails, // Profile, Onboarding
+        logOutUser, // Profile, Onboarding
         cartItems, // Cart, CartItem, CartCostDetails, Checkout
         setCartItems, // ProductDataBox, setCartItems, 
         clearCart, // CartCostDetails, CheckoutForm

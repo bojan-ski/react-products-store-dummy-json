@@ -13,17 +13,17 @@ const AppLayout = () => {
     const isPageLoading = navigation.state === 'loading'
 
     return (
-        <>
-            <Header />
+        <AppProvider>
+            <>
+                <Header />
 
-            <AppProvider>
                 <main>
                     {isPageLoading ? <Loading /> : <Outlet />}
                 </main>
-            </AppProvider>
 
-            <Footer />
-        </>
+                <Footer />
+            </>
+        </AppProvider>
     )
 }
 

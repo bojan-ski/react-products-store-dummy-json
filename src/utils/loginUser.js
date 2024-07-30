@@ -2,14 +2,15 @@
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 
 
-const loginUser = async (email, password) => {
-    try {
+const loginUser = async (email, password) => {    
+    try {        
         const auth = getAuth()
         await signInWithEmailAndPassword(auth, email, password)
 
         //success message
         console.log('user logged in');
 
+        // navigate user
         window.location.href = '/profile'
     } catch (error) {
         //error message
