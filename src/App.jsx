@@ -14,6 +14,9 @@ import About from "./pages/About"
 import ContactUs from "./pages/ContactUs"
 import ErrorPage from "./pages/ErrorPage"
 
+// PRIVATE ROUTE
+import PrivateRoute from "./private/PrivateRoute"
+
 // LOADERS
 import { loader as listOfProductsLoader } from "./pages/Dashboard"
 import { loader as selectedProductLoader } from "./pages/SelectedProduct"
@@ -58,8 +61,17 @@ const router = createBrowserRouter([
       },
       {
         path: 'checkout',
-        element: <Checkout />,
+        element: <PrivateRoute><Checkout /></PrivateRoute>,
       },
+      // {
+      //   element: <PrivateRoute />,
+      //   children: [
+      //     {
+      //       path: 'checkout',
+      //       element: <Checkout />,
+      //     }
+      //   ]
+      // },
       {
         path: 'profile',
         element: <Profile />,
