@@ -1,32 +1,35 @@
 // context
+import submitOrder from "../../api/submitOrder"
 import { useGlobalContext } from "../../context"
 // components
 import CreditCardDetails from "./CreditCardDetails"
 import ShippingDetails from "./ShippingDetails"
 
 const CheckoutForm = ({ cartItems }) => {
-    const { clearCart } = useGlobalContext()
+    const { userProfileDetails, clearCart } = useGlobalContext()
 
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault()
 
         const orderData = {
             orderDetails: cartItems,
-            grandTotal: +cartItems.orderCost + cartItems.shipping,
+            grandTotal: +(+cartItems.orderCost + cartItems.shipping).toFixed(2),
             cardDetails: {
                 nameOnCard: e.target[0].value.trim(),
                 cardNumber: e.target[1].value.trim(),
-                cardExpires: e.target[2].value.trim()
+                secureCode: e.target[3].value.trim(),
+                cardExpires: e.target[4].value.trim()
             },
             shippingDetails: {
-                streetAddress: e.target[3].value.trim(),
-                city: e.target[4].value.trim(),
-                state: e.target[5].value.trim()
+                streetAddress: e.target[5].value.trim(),
+                city: e.target[6].value.trim(),
+                zip: e.target[7].value.trim(),
+                state: e.target[8].value.trim()
             }
         }
 
-        console.log(orderData);
-        alert('Your order has been submitted')
+        // console.log(orderData);
+        await submitOrder(userProfileDetails, orderData)
     }
 
     return (

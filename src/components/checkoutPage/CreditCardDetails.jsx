@@ -15,6 +15,7 @@ const CreditCardDetails = () => {
 
             <FormInput label='Name on card' name='nameOnCard' type='text' required={true} />
             <FormInput label='Card number' name='cardNumber' type='number' required={true} />
+            <FormInput label='Secure code' name='secureCode' type='number' required={true} />
             <FormInput label='Card expires' name='cardExpires' type='number' required={true} />
         </div>
     )

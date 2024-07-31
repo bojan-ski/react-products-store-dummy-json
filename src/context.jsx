@@ -101,7 +101,7 @@ export const AppProvider = ({ children }) => {
         setCurrentPageNumber, // Pagination, SearchFeature, FilterFeature, SearchAndFilter
         compareProductsList, // ProductsListCard, CompareProducts
         setCompareProductsList, // ProductsListCard
-        userProfileDetails, // Profile, Onboarding, PrivateRoute, CartCostDetails
+        userProfileDetails, // Profile, Onboarding, PrivateRoute, CartCostDetails, CheckoutForm
         logOutUser, // Profile, Onboarding
         cartItems, // Cart, CartItem, CartCostDetails, Checkout
         setCartItems, // ProductDataBox, setCartItems, 

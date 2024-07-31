@@ -15,6 +15,7 @@ const ShippingDetails = () => {
 
             <FormInput label='Street address' name='streetAddress' type='text' required={true} />
             <FormInput label='City' name='city' type='text' required={true} />
+            <FormInput label='ZIP' name='zip' type='number' required={true} />
             <FormInput label='State' name='state' type='text' required={true} />
         </div>
     )
