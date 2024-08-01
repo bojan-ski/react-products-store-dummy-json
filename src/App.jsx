@@ -10,6 +10,8 @@ import CompareProducts from "./pages/CompareProducts"
 import Cart from "./pages/Cart"
 import Checkout from "./pages/Checkout"
 import Profile from "./pages/Profile"
+import OrderHistory from "./pages/OrderHistory"
+import BookmarkedProducts from "./pages/BookmarkedProducts"
 import About from "./pages/About"
 import ContactUs from "./pages/ContactUs"
 import ErrorPage from "./pages/ErrorPage"
@@ -20,7 +22,7 @@ import PrivateRoute from "./private/PrivateRoute"
 // LOADERS
 import { loader as listOfProductsLoader } from "./pages/Dashboard"
 import { loader as selectedProductLoader } from "./pages/SelectedProduct"
-import { loader as userOrderHistoryLoader } from "./pages/Profile"
+import { loader as userOrderHistoryLoader } from "./pages/OrderHistory"
 
 
 const router = createBrowserRouter([
@@ -75,9 +77,28 @@ const router = createBrowserRouter([
       // },
       {
         path: 'profile',
-        element: <Profile />,
-        loader: userOrderHistoryLoader
+        children: [
+          {
+            index: true,
+            element: <Profile />,
+          },
+          {
+            path: 'order-history',
+            // element: <OrderHistory />,
+            element: <PrivateRoute><OrderHistory /></PrivateRoute>,
+            loader: userOrderHistoryLoader
+          },
+          {
+            path: 'bookmarked-products',
+            element: <PrivateRoute><BookmarkedProducts /></PrivateRoute>,
+          },
+        ]
       },
+      // {
+      //   path: 'profile/order-history',
+      //   element: <OrderHistory />,
+      //   loader: userOrderHistoryLoader
+      // },
       {
         path: 'about',
         element: <About />,

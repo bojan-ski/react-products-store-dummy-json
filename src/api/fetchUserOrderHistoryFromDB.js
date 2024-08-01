@@ -18,7 +18,7 @@ const fetchUserOrderHistoryFromDB = async () => {
         let userOrderHistory = []
 
         querySnapshot.forEach((order) => {
-            console.log(order);
+            // console.log(order);
             return userOrderHistory.push({
                 id: order.id,
                 data: order.data()
