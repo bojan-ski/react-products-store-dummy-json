@@ -5,6 +5,7 @@ import { useGlobalContext } from "../context"
 import PageHeader from "../components/PageHeader"
 import OrderCostDetails from "../components/checkoutPage/OrderCostDetails"
 import CheckoutForm from "../components/checkoutPage/CheckoutForm"
+import BackButtons from "../components/BackButtons"
 
 const Checkout = () => {
   const { cartItems } = useGlobalContext() 
@@ -13,11 +14,13 @@ const Checkout = () => {
     <div className="checkout-page">
       <div className="container">
 
-        <section className="d-flex align-items-center justify-content-between my-5">
+        {/* <section className="d-flex align-items-center justify-content-between my-5">
           <Link to='/cart' className="btn btn-warning">
             Back
           </Link>
-        </section>
+        </section> */}
+
+        <BackButtons backPath='cart'/>
 
         <PageHeader page='Checkout' />
 

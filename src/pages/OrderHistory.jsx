@@ -3,6 +3,7 @@ import { Link, useLoaderData } from "react-router-dom"
 import fetchUserOrderHistoryFromFirebase from '../api/fetchUserOrderHistoryFromDB'
 // components
 import PageHeader from "../components/PageHeader"
+import BackButtons from "../components/BackButtons"
 
 
 // LOADER
@@ -12,16 +13,16 @@ export const loader = async () => {
     return userOrderHistory
 }
 
-import React from 'react'
-
 const OrderHistory = () => {
-    // const userOrderHistory = useLoaderData()
-    // console.log(userOrderHistory);
+    const userOrderHistory = useLoaderData()
+    console.log(userOrderHistory);
 
 
     return (
         <div className="order-history-page">
             <div className="container">
+
+                <BackButtons backPath='profile'/>
 
                 <PageHeader page="Order History" />
 
