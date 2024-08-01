@@ -20,13 +20,14 @@ import PrivateRoute from "./private/PrivateRoute"
 // LOADERS
 import { loader as listOfProductsLoader } from "./pages/Dashboard"
 import { loader as selectedProductLoader } from "./pages/SelectedProduct"
+import { loader as userOrderHistoryLoader } from "./pages/Profile"
 
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <AppLayout />,
-    errorElement: <ErrorPage />,
+    // errorElement: <ErrorPage />,
     children: [
       {
         index: true,
@@ -75,6 +76,7 @@ const router = createBrowserRouter([
       {
         path: 'profile',
         element: <Profile />,
+        loader: userOrderHistoryLoader
       },
       {
         path: 'about',

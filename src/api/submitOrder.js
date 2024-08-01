@@ -5,14 +5,6 @@ import { db } from "../firebase.config";
 import getCurrentTimeAndDate from "../utils/getCurrentTimeAndDate";
 
 const submitOrder = async (userProfileDetails, orderData) => {
-    // console.log(orderData);
-    // const orderDataCopy = {
-    //     ...orderData,
-    //     timestamp: serverTimestamp(),
-    //     orderCreated: getCurrentTimeAndDate()
-    // }
-    // console.log(orderDataCopy);
-
     try {
         const orderDataCopy = {
             ...orderData,
@@ -30,7 +22,8 @@ const submitOrder = async (userProfileDetails, orderData) => {
         // Add a new document to the orderHistory subcollection
        await addDoc(orderHistoryCollectionRef, orderDataCopy);
 
-        // await addDoc(collection(db, `users/${userProfileDetails.userID}/orderHistory`), orderDataCopy)
+        // Add a new document to the orders collection
+       await addDoc(collection(db, 'orders'), orderDataCopy);
 
         alert('Your order has been submitted')
     } catch (error) {
