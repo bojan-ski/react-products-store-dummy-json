@@ -79,6 +79,12 @@ main{
   height: 100px;
 }
 
+/* OrderHistory page */
+/* OrderHistoryListCard component */
+table td{
+  vertical-align: middle;
+}
+
 /* ---------- FOOTER ---------- */
 .footer {
   font-weight: 600;
