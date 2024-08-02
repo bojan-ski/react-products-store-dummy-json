@@ -1,6 +1,6 @@
 import { useLoaderData } from "react-router-dom"
 // api func 
-import fetchUserOrderHistoryFromFirebase from '../api/fetchUserOrderHistoryFromDB'
+import fetchUserOrderHistoryFromFirebase from '../api/fetchUserOrderHistoryFromFirebase'
 // components
 import BackButtons from "../components/BackButtons"
 import PageHeader from "../components/PageHeader"

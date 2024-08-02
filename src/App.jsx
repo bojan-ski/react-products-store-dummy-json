@@ -11,6 +11,7 @@ import Cart from "./pages/Cart"
 import Checkout from "./pages/Checkout"
 import Profile from "./pages/Profile"
 import OrderHistory from "./pages/OrderHistory"
+import SelectedOrder from "./pages/SelectedOrder"
 import BookmarkedProducts from "./pages/BookmarkedProducts"
 import About from "./pages/About"
 import ContactUs from "./pages/ContactUs"
@@ -23,6 +24,7 @@ import PrivateRoute from "./private/PrivateRoute"
 import { loader as listOfProductsLoader } from "./pages/Dashboard"
 import { loader as selectedProductLoader } from "./pages/SelectedProduct"
 import { loader as userOrderHistoryLoader } from "./pages/OrderHistory"
+import { loader as selectedOrderLoader } from "./pages/SelectedOrder"
 
 
 const router = createBrowserRouter([
@@ -87,6 +89,11 @@ const router = createBrowserRouter([
             // element: <OrderHistory />,
             element: <PrivateRoute><OrderHistory /></PrivateRoute>,
             loader: userOrderHistoryLoader
+          },
+          {
+            path: 'order-history/:id',
+            element: <PrivateRoute><SelectedOrder/></PrivateRoute>,
+            loader: selectedOrderLoader
           },
           {
             path: 'bookmarked-products',

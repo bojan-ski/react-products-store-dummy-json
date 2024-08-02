@@ -3,7 +3,7 @@ import { getAuth } from "firebase/auth";
 import { collection, getDocs, query, where, orderBy } from "firebase/firestore"
 import { db } from "../firebase.config";
 
-const fetchUserOrderHistoryFromDB = async () => {
+const fetchUserOrderHistoryFromFirebase = async () => {
     const auth = getAuth()
 
     if (!auth.currentUser) return null
@@ -32,4 +32,4 @@ const fetchUserOrderHistoryFromDB = async () => {
     }
 }
 
-export default fetchUserOrderHistoryFromDB
+export default fetchUserOrderHistoryFromFirebase
