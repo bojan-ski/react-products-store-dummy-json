@@ -3,7 +3,7 @@ import { Navigate, Outlet } from "react-router-dom"
 import { useGlobalContext } from "../context"
 
 const PrivateRoute = ({children}) => {
-    const { userProfileDetails } = useGlobalContext()
+    const { userProfileDetails } = useGlobalContext()    
 
     return userProfileDetails.userName ? children : <Navigate to='/login'/>
 }

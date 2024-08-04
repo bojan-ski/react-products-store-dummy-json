@@ -17,14 +17,14 @@ const CheckoutForm = ({ cartItems }) => {
             cardDetails: {
                 nameOnCard: e.target[0].value.trim(),
                 cardNumber: e.target[1].value.trim(),
-                secureCode: e.target[3].value.trim(),
-                cardExpires: e.target[4].value.trim()
+                secureCode: e.target[2].value.trim(),
+                cardExpires: e.target[3].value.trim()
             },
             shippingDetails: {
-                streetAddress: e.target[5].value.trim(),
-                city: e.target[6].value.trim(),
-                zip: e.target[7].value.trim(),
-                state: e.target[8].value.trim()
+                streetAddress: e.target[4].value.trim(),
+                city: e.target[5].value.trim(),
+                zip: e.target[6].value.trim(),
+                state: e.target[7].value.trim()
             }
         }
 

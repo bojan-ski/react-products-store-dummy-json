@@ -2,7 +2,7 @@ import { Link, useLoaderData } from "react-router-dom"
 // context
 import { useGlobalContext } from "../context"
 // api func 
-import fetchUserOrderHistoryFromFirebase from '../api/fetchUserOrderHistoryFromDB'
+import fetchUserOrderHistoryFromFirebase from '../api/fetchUserOrderHistoryFromFirebase'
 // components
 import PageHeader from "../components/PageHeader"
 import UserShippingDetails from "../components/profilePage/UserShippingDetails"

@@ -85,6 +85,11 @@ table td{
   vertical-align: middle;
 }
 
+/* SelectedOrder component */
+.selected-order-details .ordered-product-details .ordered-product-details-1 img{
+  height: 50px;
+}
+
 /* ---------- FOOTER ---------- */
 .footer {
   font-weight: 600;
