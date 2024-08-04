@@ -1,25 +1,13 @@
-import { Link, useLoaderData } from "react-router-dom"
+import { Link } from "react-router-dom"
 // context
 import { useGlobalContext } from "../context"
-// api func 
-import fetchUserOrderHistoryFromFirebase from '../api/fetchUserOrderHistoryFromFirebase'
 // components
 import PageHeader from "../components/PageHeader"
 import UserShippingDetails from "../components/profilePage/UserShippingDetails"
 
 
-// LOADER
-export const loader = async () => {
-  const userOrderHistory = await fetchUserOrderHistoryFromFirebase()
-  // console.log(userOrderHistory);
-  return userOrderHistory
-}
-
 const Profile = () => {
   const { userProfileDetails, logOutUser } = useGlobalContext()
-  // console.log(userProfileDetails);
-  const userOrderHistory = useLoaderData()
-  // console.log(userOrderHistory);
 
   return (
     <div className="profile-page">

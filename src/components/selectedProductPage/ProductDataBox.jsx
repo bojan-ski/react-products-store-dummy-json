@@ -55,8 +55,6 @@ const ProductDataBox = () => {
     return (
         <>
             <div className="product-data">
-
-
                 <p className="mb-2">
                     <span className="fw-bold">Brand: </span> {brand}
                 </p>
@@ -80,7 +78,7 @@ const ProductDataBox = () => {
                     <span className="fw-bold">Price:</span> {price}
                 </p>
                 <p className="mb-2">
-                    <span className="fw-bold">Rating:</span> {rating}
+                    <span className="fw-bold">Rating:</span> {rating} ⭐
                 </p>
                 <p className="mb-2">
                     <span className="fw-bold">Shipping information:</span> {shippingInformation}

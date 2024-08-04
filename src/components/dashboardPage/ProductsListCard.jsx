@@ -1,12 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // context
 import { useGlobalContext } from "../../context";
+
+
+import saveBookmarkProductToFirebase from "../../api/saveBookmarkProductToFirebase";
 
 const ProductsListCard = ({ product }) => {
     // console.log(product);
     const { id, brand, category, price, rating, thumbnail, title } = product
 
-    const { compareProductsList, setCompareProductsList } = useGlobalContext()
+    const { compareProductsList, setCompareProductsList, userProfileDetails } = useGlobalContext()
+
+    const navigate = useNavigate()
 
     const handleAddProductToCompareProductsList = () => {
         if (compareProductsList.length > 1) {
@@ -35,11 +40,23 @@ const ProductsListCard = ({ product }) => {
 
     const isProductInCompareList = compareProductsList && compareProductsList.some(product => product.id === id);
 
+    const handleSaveBookmarkProduct = async () => {
+        console.log('handleSaveBookmarkProduct'); 
+        
+        if(!userProfileDetails.userID) return navigate('/login')             
+
+        await saveBookmarkProductToFirebase(userProfileDetails.userID, product)
+    }
+
+    const handleRemoveBookmarkProduct = () => {
+        console.log('handleRemoveBookmarkProduct');        
+    }
+
     return (
         <div className="col-12 col-md-6 col-lg-4 mb-4">
             <div className="card-details rounded rounded-4 p-3">
                 
-                <div className="btn-container mb-3 pb-2 border-bottom">
+                <div className="card-details-btn-container mb-3 pb-2 border-bottom d-flex align-items-center justify-content-between">
                     {isProductInCompareList ? (
                         <button className="btn btn-danger" onClick={() => handleRemoveProductFromCompareProductsList(id)}>
                             Remove
@@ -49,6 +66,10 @@ const ProductsListCard = ({ product }) => {
                             Compare
                         </button>
                     )}
+
+                    <button className="btn btn-info" onClick={handleSaveBookmarkProduct}>
+                        save 
+                    </button>
                 </div>
 
                 <div className="card-details-header text-center mb-2">

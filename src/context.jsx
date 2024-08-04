@@ -98,10 +98,10 @@ export const AppProvider = ({ children }) => {
         productsList, // ProductsList, 
         setProductsList, // ProductsList, SearchFeature, FilterFeature, Pagination
         currentPageNumber, // Pagination
-        setCurrentPageNumber, // Pagination, SearchFeature, FilterFeature, SearchAndFilter
+        setCurrentPageNumber, // Pagination, SearchFeature, FilterFeature, SearchAndFilter, ProductsList
         compareProductsList, // ProductsListCard, CompareProducts
         setCompareProductsList, // ProductsListCard
-        userProfileDetails, // Profile, Onboarding, PrivateRoute, CartCostDetails, CheckoutForm, SelectedOrder
+        userProfileDetails, // Profile, Onboarding, PrivateRoute, ProductsListCard, CartCostDetails, CheckoutForm, SelectedOrder
         logOutUser, // Profile, Onboarding
         cartItems, // Cart, CartItem, CartCostDetails, Checkout
         setCartItems, // ProductDataBox, setCartItems, 

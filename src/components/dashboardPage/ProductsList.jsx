@@ -1,21 +1,23 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useLoaderData } from "react-router-dom";
+// context
+import { useGlobalContext } from "../../context";
 // component
 import ProductsListCard from "./ProductsListCard";
 import Pagination from "../Pagination";
 import SearchAndFilter from "./SearchAndFilter";
-import { useGlobalContext } from "../../context";
 
 
 const ProductsList = () => {
     const { listOfProductsFromDB } = useLoaderData()
     const { products, total } = listOfProductsFromDB
 
-    const { availableProducts, setAvailableProducts, productsList, setProductsList } = useGlobalContext()
+    const { availableProducts, setAvailableProducts, productsList, setProductsList, setCurrentPageNumber } = useGlobalContext()
 
     useEffect(() => {
         setAvailableProducts(total)
         setProductsList(products)
+        setCurrentPageNumber(1)
     }, [])
 
     return (

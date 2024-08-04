@@ -68,15 +68,6 @@ const router = createBrowserRouter([
         path: 'checkout',
         element: <PrivateRoute><Checkout /></PrivateRoute>,
       },
-      // {
-      //   element: <PrivateRoute />,
-      //   children: [
-      //     {
-      //       path: 'checkout',
-      //       element: <Checkout />,
-      //     }
-      //   ]
-      // },
       {
         path: 'profile',
         children: [
@@ -86,7 +77,6 @@ const router = createBrowserRouter([
           },
           {
             path: 'order-history',
-            // element: <OrderHistory />,
             element: <PrivateRoute><OrderHistory /></PrivateRoute>,
             loader: userOrderHistoryLoader
           },
@@ -101,11 +91,6 @@ const router = createBrowserRouter([
           },
         ]
       },
-      // {
-      //   path: 'profile/order-history',
-      //   element: <OrderHistory />,
-      //   loader: userOrderHistoryLoader
-      // },
       {
         path: 'about',
         element: <About />,
