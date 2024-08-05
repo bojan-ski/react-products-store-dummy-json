@@ -14,12 +14,13 @@ const saveBookmarkProductToFirebase = async (userID, product) => {
 
         const userDocRef = doc(db, `users/${userID}`);
     
-        // Reference to the orderHistory subcollection
+        // Reference to the bookmarkedProducts subcollection
         const bookmarkedProductsCollectionRef = collection(userDocRef, 'bookmarkedProducts');
         
-        // Add a new document to the orderHistory subcollection
+        // Add a new document to the bookmarkedProducts subcollection
        await addDoc(bookmarkedProductsCollectionRef, productData);
 
+       // success message
        alert('Product has been bookmarked')
     } catch (error) {
         console.log(error);        

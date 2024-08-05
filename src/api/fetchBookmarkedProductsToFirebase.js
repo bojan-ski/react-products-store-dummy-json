@@ -16,10 +16,11 @@ const fetchBookmarkedProductsToFirebase = async () => {
     
         // Extract data from each document
         const bookmarkedProducts = querySnapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data()
+          docID: doc.id,
+          productData: doc.data()
         }));
         
+        // console.log(bookmarkedProducts);       
         return bookmarkedProducts;
     } catch (error) {
         // error message

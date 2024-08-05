@@ -1,19 +1,17 @@
+import { useEffect, useState } from "react";
 import { Link, useLoaderData, useNavigate } from "react-router-dom";
 // context
 import { useGlobalContext } from "../../context";
 // api func
 import saveBookmarkProductToFirebase from "../../api/saveBookmarkProductToFirebase";
+import removeBookmarkProductFromFirebase from "../../api/removeBookmarkProductFromFirebase";
+import fetchBookmarkedProductsToFirebase from "../../api/fetchBookmarkedProductsToFirebase";
 
 const ProductsListCard = ({ product }) => {
     // console.log(product);
     const { id, brand, category, price, rating, thumbnail, title } = product
 
     const { compareProductsList, setCompareProductsList, userProfileDetails } = useGlobalContext()
-
-    const { bookmarkedProducts } = useLoaderData()
-    console.log(bookmarkedProducts);
-
-    const navigate = useNavigate()
 
     const handleAddProductToCompareProductsList = () => {
         if (compareProductsList.length > 1) {
@@ -42,17 +40,36 @@ const ProductsListCard = ({ product }) => {
 
     const isProductInCompareList = compareProductsList && compareProductsList.some(product => product.id === id);
 
+
+    const navigate = useNavigate()
+    const { bookmarkedProducts } = useLoaderData()
+    // console.log(bookmarkedProducts);    
+
+    const [bookmarkedProductsList, setBookmarkedProductsList] = useState(bookmarkedProducts)
+
     const handleSaveBookmarkProduct = async () => {
-        console.log('handleSaveBookmarkProduct');
+        // console.log('handleSaveBookmarkProduct');
 
         if (!userProfileDetails.userID) return navigate('/login')
 
         await saveBookmarkProductToFirebase(userProfileDetails.userID, product)
+
+        const updatedBookmarkedProductsList = await fetchBookmarkedProductsToFirebase()
+        setBookmarkedProductsList(updatedBookmarkedProductsList)
     }
 
-    const handleRemoveBookmarkProduct = () => {
-        console.log('handleRemoveBookmarkProduct');
+    const handleRemoveBookmarkProduct = async (id) => {
+        // console.log('handleRemoveBookmarkProduct');
+
+        const bookmarkedProduct = bookmarkedProductsList.filter(product => product.productData.id == id)  
+
+        await removeBookmarkProductFromFirebase(userProfileDetails.userID, bookmarkedProduct[0].docID)
+
+        const updatedBookmarkedProductsList = await fetchBookmarkedProductsToFirebase()
+        setBookmarkedProductsList(updatedBookmarkedProductsList)
     }
+
+    const isBookmarked = bookmarkedProductsList !== null && bookmarkedProductsList.some(product => product.productData.id == id)
 
     return (
         <div className="col-12 col-md-6 col-lg-4 mb-4">
@@ -69,9 +86,15 @@ const ProductsListCard = ({ product }) => {
                         </button>
                     )}
 
-                    <button className="btn btn-info" onClick={handleSaveBookmarkProduct}>
-                        save
-                    </button>
+                    {isBookmarked ? (
+                        <button className="btn btn-info" onClick={() => handleRemoveBookmarkProduct(id)}>
+                            remove
+                        </button>
+                    ) : (
+                        <button className="btn btn-primary" onClick={handleSaveBookmarkProduct}>
+                            save
+                        </button>
+                    )}
                 </div>
 
                 <div className="card-details-header text-center mb-2">

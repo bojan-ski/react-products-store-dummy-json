@@ -15,7 +15,7 @@ export const loader = async () => {
   const categories = await fetchDataFromDB('', '/category-list')
 
   // firebase func
-  const bookmarkedProducts = await fetchBookmarkedProductsToFirebase()
+  const bookmarkedProducts = await fetchBookmarkedProductsToFirebase() 
 
   return { listOfProductsFromDB, categories, bookmarkedProducts }
 }
