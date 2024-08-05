@@ -2,6 +2,7 @@ import { useLoaderData, Link } from "react-router-dom"
 // utils 
 import fetchDataFromDB from "../utils/fetchDataFromDB"
 // components
+import BackButtons from "../components/BackButtons"
 import PageHeader from "../components/PageHeader"
 import ImagesGalleryBox from "../components/selectedProductPage/ImagesGalleryBox"
 import ProductDataBox from "../components/selectedProductPage/ProductDataBox"
@@ -19,16 +20,31 @@ export const loader = async ({ params }) => {
 const SelectedProduct = () => {
     const { availabilityStatus, brand, category, description, dimensions, discountPercentage, images, minimumOrderQuantity, price, rating, returnPolicy, reviews, shippingInformation, stock, tags, thumbnail, title, warrantyInformation, weight } = useLoaderData()
 
-    const urlBackPath = window.location.pathname.split('/').includes('compare')
+    // const urlBackPath = window.location.pathname.split('/').includes('compare')
+    // const urlBackPath = window.location.pathname.split('/')
+    // console.log(urlBackPath);
+
+    let urlBackPath;
+
+    if(window.location.pathname.split('/').includes('compare')){
+        urlBackPath = '/compare'
+    }else if(window.location.pathname.split('/').includes('bookmarked-products')){
+        urlBackPath = '/profile/bookmarked-products'        
+    }else{
+        urlBackPath = '/'
+    }
 
     return (
         <div className="selected-product-page my-5">
             <div className="container">
 
                 <section className="d-flex align-items-center justify-content-between my-5">
-                    <Link to={urlBackPath ? '/compare' : '/'} className="btn btn-warning">
+                    {/* <Link to={urlBackPath ? '/compare' : '/'} className="btn btn-warning"> */}
+                    {/* <Link to={urlBackPath} className="btn btn-warning">
                         Back
-                    </Link>
+                    </Link> */}
+
+                    <BackButtons backPath={urlBackPath} />
 
                     <h5 className={`fw-bold mb-0 ${availabilityStatus == "In Stock" ? 'text-success' : 'text-danger'}`}>
                         {availabilityStatus}

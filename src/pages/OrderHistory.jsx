@@ -22,7 +22,7 @@ const OrderHistory = () => {
         <div className="order-history-page">
             <div className="container">
 
-                <BackButtons backPath='profile'/>
+                <BackButtons backPath='/profile'/>
 
                 <PageHeader page="Order History" />
 

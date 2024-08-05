@@ -88,6 +88,12 @@ const router = createBrowserRouter([
           {
             path: 'bookmarked-products',
             element: <PrivateRoute><BookmarkedProducts /></PrivateRoute>,
+            loader: listOfProductsLoader
+          },
+          {
+            path: 'bookmarked-products/:id',
+            element: <PrivateRoute><SelectedProduct /></PrivateRoute>,
+            loader: selectedProductLoader
           },
         ]
       },

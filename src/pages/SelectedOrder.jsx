@@ -32,7 +32,7 @@ const SelectedOrder = () => {
     return (
         <div className="container">
 
-            <BackButtons backPath='profile/order-history' />
+            <BackButtons backPath='/profile/order-history' />
 
             <PageHeader page="Selected Order" />
 
