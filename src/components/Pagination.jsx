@@ -2,6 +2,8 @@
 import fetchDataFromDB from "../utils/fetchDataFromDB"
 // context 
 import { useGlobalContext } from "../context"
+// utils func
+import scrollToTop from "../utils/scrollToTop"
 
 let productsListSkipNumber = 0
 
@@ -44,6 +46,8 @@ const Pagination = () => {
         } else {
             updatedProductsList(productsListSkipNumber)
         }
+
+        scrollToTop()
     }
 
     return (
