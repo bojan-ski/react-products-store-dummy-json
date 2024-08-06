@@ -3,9 +3,9 @@ import { useLoaderData } from "react-router-dom";
 // context
 import { useGlobalContext } from "../../context";
 // component
-import ProductsListCard from "./ProductsListCard";
 import Pagination from "../Pagination";
 import SearchAndFilter from "./SearchAndFilter";
+import GridViewListCard from "../GridViewListCard";
 
 
 const ProductsList = () => {
@@ -33,7 +33,7 @@ const ProductsList = () => {
                     {!productsList || productsList.length == 0 ? (
                         <h1>No products available</h1>
                     ) : (
-                        productsList?.map(product => <ProductsListCard key={product.id} product={product} />)
+                        productsList?.map(product => <GridViewListCard key={product.id} product={product} />)
                     )}
                 </div>
             </section>

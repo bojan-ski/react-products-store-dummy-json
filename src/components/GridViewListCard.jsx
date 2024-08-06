@@ -1,13 +1,14 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useLoaderData, useNavigate } from "react-router-dom";
 // context
-import { useGlobalContext } from "../../context";
+import { useGlobalContext } from "../context";
 // api func
-import saveBookmarkProductToFirebase from "../../api/saveBookmarkProductToFirebase";
-import removeBookmarkProductFromFirebase from "../../api/removeBookmarkProductFromFirebase";
-import fetchBookmarkedProductsToFirebase from "../../api/fetchBookmarkedProductsToFirebase";
+import saveBookmarkProductToFirebase from "../api/saveBookmarkProductToFirebase";
+import removeBookmarkProductFromFirebase from "../api/removeBookmarkProductFromFirebase";
+import fetchBookmarkedProductsToFirebase from "../api/fetchBookmarkedProductsToFirebase";
 
-const ProductsListCard = ({ product }) => {
+
+const GridViewListCard = ({ product }) => {
     // console.log(product);
     const { id, brand, category, price, rating, thumbnail, title } = product
 
@@ -61,7 +62,7 @@ const ProductsListCard = ({ product }) => {
     const handleRemoveBookmarkProduct = async (id) => {
         // console.log('handleRemoveBookmarkProduct');
 
-        const bookmarkedProduct = bookmarkedProductsList.filter(product => product.productData.id == id)  
+        const bookmarkedProduct = bookmarkedProductsList.filter(product => product.productData.id == id)
 
         await removeBookmarkProductFromFirebase(userProfileDetails.userID, bookmarkedProduct[0].docID)
 
@@ -134,4 +135,4 @@ const ProductsListCard = ({ product }) => {
     )
 }
 
-export default ProductsListCard
+export default GridViewListCard

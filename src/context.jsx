@@ -18,6 +18,32 @@ export const AppProvider = ({ children }) => {
     // compare products
     const [compareProductsList, setCompareProductsList] = useState([])
 
+    const handleAddProductToCompareProductsList = (product) => {
+        if (compareProductsList.length > 1) {
+            alert('only two products can be compared')
+        } else {
+            setCompareProductsList(currState => [...currState, product])
+        }
+        // console.log(compareProducts);
+
+        // let existingData = localStorage.getItem('compare');
+        // let itemsArray = existingData ? JSON.parse(existingData) : [];
+
+        // if (itemsArray.length > 2) {
+        //     console.log(3);
+        // } else {           
+        //     itemsArray.push(product);
+
+        //     localStorage.setItem('compare', JSON.stringify(itemsArray));
+        // }
+    }
+
+    const handleRemoveProductFromCompareProductsList = (id) => {
+        const updatedCompareProductsList = compareProductsList.filter(product => product.id !== id);
+        setCompareProductsList(updatedCompareProductsList);
+    }
+
+
     // user details
     const auth = getAuth()
 
@@ -101,6 +127,8 @@ export const AppProvider = ({ children }) => {
         setCurrentPageNumber, // Pagination, SearchFeature, FilterFeature, SearchAndFilter, ProductsList
         compareProductsList, // ProductsListCard, CompareProducts
         setCompareProductsList, // ProductsListCard
+        handleAddProductToCompareProductsList, // ProductsListCard, BookmarkedProductsListCard
+        handleRemoveProductFromCompareProductsList, // ProductsListCard, BookmarkedProductsListCard
         userProfileDetails, // Profile, Onboarding, PrivateRoute, ProductsListCard, CartCostDetails, CheckoutForm, SelectedOrder
         logOutUser, // Profile, Onboarding
         cartItems, // Cart, CartItem, CartCostDetails, Checkout
