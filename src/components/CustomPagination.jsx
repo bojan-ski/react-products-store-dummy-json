@@ -1,77 +1,97 @@
 import { useEffect } from "react"
+// context
+import { useGlobalContext } from "../context"
 // utils func
 import scrollToTop from "../utils/scrollToTop"
 
-let curPageNum = 1
+// let curPageNum = 1
 let pointA = 0
 let pointB = 9
 
 const CustomPagination = ({ dataFromDB, setDisplayedContent }) => {
+    // console.log(dataFromDB);    
+
+    // const {currentPageNumberCustom, setCurrentPageNumberCustom} = useGlobalContext()
+    const {currentPageNumber, setCurrentPageNumber} = useGlobalContext()
+
     useEffect(() => {
-        curPageNum = 1
+        // console.log('radi');
+
         pointA = 0
         pointB = 9
+        setCurrentPageNumber(1)
     }, [])
+
+    // console.log(curPageNum);
+    // console.log(pointA);
+    // console.log(pointB);
+
+    // console.log(currentPageNumber);    
+
 
     const paginationOption = (term) => {
         if (term === 'plus') {
             pointA += 9
             pointB += 9
-            // setCurrentPageNumberCustom(curPageNum => curPageNum + 1)
-            curPageNum += 1
+            setCurrentPageNumber(curPageNum => curPageNum + 1)
+            // curPageNum += 1
         }
 
         if (term === 'minus') {
             pointA -= 9
             pointB -= 9
-            // setCurrentPageNumberCustom(curPageNum => curPageNum - 1)
-            curPageNum -= 1
+            setCurrentPageNumber(curPageNum => curPageNum - 1)
+            // curPageNum -= 1
         }
 
         if (pointB == 0) {
-            setDisplayedContent(currData => ({
-                ...currData,
-                displayedDataList: currData.totalDataList.slice(0, 9)
-            }))
+            // setDisplayedContent(currData => ({
+            //     ...currData,
+            //     displayedDataList: currData.totalDataList.slice(0, 9)
+            // }))
+            setDisplayedContent(dataFromDB.slice(0, 9))
             pointA = 0
             pointB = 9
-            curPageNum = 1
-            // setCurrentPageNumberCustom(1)
+            // curPageNum = 1
+            setCurrentPageNumber(1)
         } else if (pointB > dataFromDB.length && pointA >= dataFromDB.length) {
-            setDisplayedContent(currData => ({
-                ...currData,
-                displayedDataList: currData.totalDataList.slice(0, 9)
-            }))
+            // setDisplayedContent(currData => ({
+            //     ...currData,
+            //     displayedDataList: currData.totalDataList.slice(0, 9)
+            // }))
+            setDisplayedContent(dataFromDB.slice(0, 9))
             pointA = 0
             pointB = 9
-            curPageNum = 1
-            // setCurrentPageNumberCustom(1)
+            // curPageNum = 1
+            setCurrentPageNumber(1)
         } else if (pointB > dataFromDB.length) {
             const lastPostedListings = dataFromDB.length - pointA
-            setDisplayedContent(currData => ({
-                ...currData,
-                displayedDataList: currData.totalDataList.slice(-lastPostedListings)
-            }))
-            curPageNum = Math.ceil(dataFromDB.length / 9)
-            // setCurrentPageNumberCustom(Math.ceil(dataFromDB.length / 9))
+            // setDisplayedContent(currData => ({
+            //     ...currData,
+            //     displayedDataList: currData.totalDataList.slice(-lastPostedListings)
+            // }))
+            setDisplayedContent(dataFromDB.slice(-lastPostedListings))
+            // curPageNum = Math.ceil(dataFromDB.length / 9)
+            setCurrentPageNumber(Math.ceil(dataFromDB.length / 9))
         } else {
-            setDisplayedContent(currData => ({
-                ...currData,
-                displayedDataList: currData.totalDataList.slice(pointA, pointB)
-            }))
+            setDisplayedContent(dataFromDB.slice(pointA, pointB))
+            // setDisplayedContent(currData => ({
+            //     ...currData,
+            //     displayedDataList: currData.totalDataList.slice(pointA, pointB)
+            // }))
         }
 
         scrollToTop()
     }
 
     return (
-        <div className="pagination pb-4 d-flex align-items-center justify-content-between">
+        <div className="pagination my-4 d-flex align-items-center justify-content-between">
             <div className="number-of-pages">
                 <p className="mb-0 fw-bold text-muted">
                     Broj stranice:
                     <span className="mx-1 text-dark">
-                        {/* {currentPageNumberCustom} */}
-                        {curPageNum}
+                        {currentPageNumber}
+                        {/* {curPageNum} */}
                     </span>
                     /
                     <span className="ms-1 text-dark">

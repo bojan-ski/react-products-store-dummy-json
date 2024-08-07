@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 // utils func
 import fetchDataFromDB from "../utils/fetchDataFromDB"
 // context 
@@ -5,10 +6,19 @@ import { useGlobalContext } from "../context"
 // utils func
 import scrollToTop from "../utils/scrollToTop"
 
+
 let productsListSkipNumber = 0
 
 const Pagination = () => {
     const {availableProducts, updatedURL, setProductsList, currentPageNumber, setCurrentPageNumber} = useGlobalContext()
+
+    useEffect(() => {
+        // console.log('radi');
+        setCurrentPageNumber(1)
+        productsListSkipNumber = 0
+    },[])
+
+    // console.log(currentPageNumber);
 
     const updatedProductsList = async (productsListSkipNumber) => {
         const { products } = await fetchDataFromDB(updatedURL, `?limit=12&skip=${productsListSkipNumber}`)
@@ -48,7 +58,7 @@ const Pagination = () => {
         }
 
         scrollToTop()
-    }
+    }    
 
     return (
         // <div className="pagination mb-4 d-flex align-items-center justify-content-between">

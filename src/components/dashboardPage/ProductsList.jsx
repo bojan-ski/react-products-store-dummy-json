@@ -12,12 +12,11 @@ const ProductsList = () => {
     const { listOfProductsFromDB } = useLoaderData()
     const { products, total } = listOfProductsFromDB
 
-    const { availableProducts, setAvailableProducts, productsList, setProductsList, setCurrentPageNumber } = useGlobalContext()
+    const { availableProducts, setAvailableProducts, productsList, setProductsList } = useGlobalContext()
 
     useEffect(() => {
         setAvailableProducts(total)
         setProductsList(products)
-        setCurrentPageNumber(1)
     }, [])
 
     return (

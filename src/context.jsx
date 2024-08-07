@@ -15,16 +15,6 @@ export const AppProvider = ({ children }) => {
     // pagination
     const [currentPageNumber, setCurrentPageNumber] = useState(1)
 
-    // custom pagination
-
-    // KAD UBACIS PAGINACIJU U ORDER HISTORY PROVERI DA LI TREBA:
-    // const [currentPageNumberCustom, setCurrentPageNumberCustom] = useState(1)
-    
-    const [displayedDataFromDB, setDisplayedDataFromDB] = useState({
-        totalDataList: null,
-        displayedDataList: null
-    })
-
     // compare products
     const [compareProductsList, setCompareProductsList] = useState([])
 
@@ -107,10 +97,8 @@ export const AppProvider = ({ children }) => {
         setUpdatedURL, // FilterFeature
         productsList, // ProductsList, 
         setProductsList, // ProductsList, SearchFeature, FilterFeature, Pagination
-        currentPageNumber, // Pagination
-        setCurrentPageNumber, // Pagination, SearchFeature, FilterFeature, SearchAndFilter, ProductsList
-        displayedDataFromDB, //BookmarkedProductsList
-        setDisplayedDataFromDB, // BookmarkedProductsList
+        currentPageNumber, // Pagination, CustomPagination
+        setCurrentPageNumber, // Pagination, CustomPagination, SearchFeature, FilterFeature, SearchAndFilter
         compareProductsList, // ProductsListCard, CompareProducts
         setCompareProductsList, // ProductsListCard
         userProfileDetails, // Profile, Onboarding, PrivateRoute, ProductsListCard, CartCostDetails, CheckoutForm, SelectedOrder

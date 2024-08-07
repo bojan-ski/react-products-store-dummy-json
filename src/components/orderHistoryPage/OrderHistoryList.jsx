@@ -2,12 +2,12 @@
 import OrderHistoryListCard from "./OrderHistoryListCard"
 
 
-const OrderHistoryList = ({ userOrderHistory }) => {
-    // console.log(userOrderHistory);
+const OrderHistoryList = ({ orderHistory }) => {
+    // console.log(orderHistory);
     
     return (
         // <div className="row">
-        //     {userOrderHistory?.map(order => <SelectedOrder key={order.id} order={order} />)}
+        //     {orderHistory?.map(order => <SelectedOrder key={order.id} order={order} />)}
         // </div>
 
         <table className="table table-dark table-bordered">
@@ -21,8 +21,8 @@ const OrderHistoryList = ({ userOrderHistory }) => {
                 </tr>
             </thead>
             <tbody>
-                {/* {userOrderHistory?.map(order => <SelectedOrder key={order.id} order={order} />)} */}
-                {userOrderHistory?.map(order => <OrderHistoryListCard key={order.id} order={order} />)}
+                {/* {orderHistory?.map(order => <SelectedOrder key={order.id} order={order} />)} */}
+                {orderHistory?.map(order => <OrderHistoryListCard key={order.id} order={order} />)}
             </tbody>
         </table>
     )

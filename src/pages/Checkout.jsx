@@ -20,7 +20,7 @@ const Checkout = () => {
           </Link>
         </section> */}
 
-        <BackButtons backPath='cart'/>
+        <BackButtons backPath='/cart'/>
 
         <PageHeader page='Checkout' />
 
