@@ -23,6 +23,7 @@ import PrivateRoute from "./private/PrivateRoute"
 // LOADERS
 import { loader as listOfProductsLoader } from "./pages/Dashboard"
 import { loader as selectedProductLoader } from "./pages/SelectedProduct"
+import { loader as userShippingDetailsLoader } from "./pages/Profile"
 import { loader as userOrderHistoryLoader } from "./pages/OrderHistory"
 import { loader as selectedOrderLoader } from "./pages/SelectedOrder"
 
@@ -74,6 +75,7 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <Profile />,
+            loader: userShippingDetailsLoader
           },
           {
             path: 'order-history',

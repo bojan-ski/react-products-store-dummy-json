@@ -1,11 +1,15 @@
+import { useLoaderData } from "react-router-dom"
 // context
-import saveUserShippingDetailsToFirebase from "../../api/saveUserShippingDetailsToFirebase"
 import { useGlobalContext } from "../../context"
+// api func
+import saveUserShippingDetailsToFirebase from "../../api/saveUserShippingDetailsToFirebase"
 // components
 import FormInput from "../FormInput"
 
 const UserShippingDetails = () => {
-  const {userProfileDetails} = useGlobalContext()
+  const userShippingDetails = useLoaderData()
+  console.log(userShippingDetails);  
+  const { userProfileDetails } = useGlobalContext()
 
   const handleSetUserShippingDetails = async e => {
     e.preventDefault()
@@ -20,7 +24,7 @@ const UserShippingDetails = () => {
     }
 
     // console.log(formData);  
-    
+
     await saveUserShippingDetailsToFirebase(userProfileDetails.userID, formData)
   }
 

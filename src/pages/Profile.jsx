@@ -1,10 +1,19 @@
 import { Link } from "react-router-dom"
 // context
 import { useGlobalContext } from "../context"
+// api func
+import fetchUserShippingDetailsFromFirebase from "../api/fetchUserShippingDetailsFromFirebase"
 // components
 import PageHeader from "../components/PageHeader"
 import UserShippingDetails from "../components/profilePage/UserShippingDetails"
 
+
+// LOADER
+export const loader = async () => {
+  const userShippingDetails = await fetchUserShippingDetailsFromFirebase()
+  // console.log(userShippingDetails);
+  return userShippingDetails
+}
 
 const Profile = () => {
   const { userProfileDetails, logOutUser } = useGlobalContext()
