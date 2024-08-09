@@ -79,6 +79,13 @@ main{
   height: 100px;
 }
 
+/* Profile page */
+
+.profile-page .profile-page-shipping-details-form{
+  width: 75%;
+  margin: 0 auto;
+}
+
 /* OrderHistory page */
 /* OrderHistoryListCard component */
 table td{

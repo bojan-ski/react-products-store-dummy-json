@@ -14,7 +14,12 @@ const fetchUserShippingDetailsFromFirebase = async () => {
 
         const querySnapshot = await getDocs(userShippingDetailsRef);
 
-        const userShippingDetails = querySnapshot.docs[0].data();
+        if(!querySnapshot.docs[0]) return null        
+
+        const userShippingDetails = {
+            ShippingDetailsDocID: querySnapshot.docs[0].id,
+            ShippingDetailsData: querySnapshot.docs[0].data()
+        };        
         
         // console.log(userShippingDetails);       
         return userShippingDetails;

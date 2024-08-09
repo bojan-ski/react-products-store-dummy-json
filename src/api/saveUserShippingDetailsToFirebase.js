@@ -3,13 +3,13 @@ import { addDoc, doc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase.config";
 
 
-const saveUserShippingDetailsToFirebase = async (userID, formData) => {
+const saveUserShippingDetailsToFirebase = async (userID, userShippingDetailsFormData) => {
   // console.log(userID);
     // console.log(userShippingDetails);
     
     try {
         const userShippingDetails = {
-            ...formData,
+            ...userShippingDetailsFormData,
             timestamp: serverTimestamp()
         }
 
@@ -24,7 +24,7 @@ const saveUserShippingDetailsToFirebase = async (userID, formData) => {
        // success message
        alert('Shipping Details saved')
     } catch (error) {
-        console.log(error);        
+        console.error(error);        
     }  
 }
 

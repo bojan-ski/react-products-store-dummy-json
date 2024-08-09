@@ -1,10 +1,10 @@
-const FormInput = ({ label, name, type,  required }) => {
+const FormInput = ({ label, name, type, placeholder, value, required, onMutate, disabled }) => {
     return (
         <div className="mb-3">
-            <label htmlFor={name} className="form-label">
-                {label}
+            <label htmlFor={name} className="fw-bold form-label">
+                {label}:
             </label>
-            <input type={type} className="form-control" id={name} required={required}/>
+            <input type={type} className="form-control" id={name} placeholder={placeholder} value={value} required={required} onChange={onMutate} disabled={disabled}/>
         </div>
     )
 }
