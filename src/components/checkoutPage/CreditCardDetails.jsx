@@ -1,22 +1,27 @@
+// components
 import FormInput from "../FormInput"
+import CheckoutSubheader from "./CheckoutSubheader"
 
-const CreditCardDetails = () => {
+const CreditCardDetails = ({ cardDetails, setCardDetails }) => {
+    const onInputDataCardDetails = (e) => {
+        setCardDetails(prevState => ({
+            ...prevState,
+            [e.target.id]: e.target.value
+        }))
+    }
+
+    const { nameOnCard, cardNumber, secureCode, cardExpires } = cardDetails
+
     return (
         <div>
-            <h5 className="text-center">
-                Card Details
+            {/* Page subheader - components */}
+            <CheckoutSubheader textOne='Card Details' textTwo='CREDIT CARD' />
 
-            </h5>
-            <h6 className="text-center">
-                <span>THIS IS JUST FOR DEVELOPMENT</span>
-                <br />
-                <span>PLEASE DO NOT PROVIDED REAL CREDIT CARD DETAILS</span>
-            </h6>
-
-            <FormInput label='Name on card' name='nameOnCard' type='text' required={true} />
-            <FormInput label='Card number' name='cardNumber' type='number' required={true} />
-            <FormInput label='Secure code' name='secureCode' type='number' required={true} />
-            <FormInput label='Card expires' name='cardExpires' type='number' required={true} />
+            {/* Form input - components */}
+            <FormInput label='Name on card' name='nameOnCard' type='text' placeholder='Bruce Wayne' value={nameOnCard} required={true} onMutate={onInputDataCardDetails} />
+            <FormInput label='Card number' name='cardNumber' type='number' placeholder='1111-1111-1111-1111' value={cardNumber} required={true} onMutate={onInputDataCardDetails} />
+            <FormInput label='Secure code' name='secureCode' type='number' placeholder='123' value={secureCode} required={true} onMutate={onInputDataCardDetails} />
+            <FormInput label='Card expires' name='cardExpires' type='number' placeholder='01-25' value={cardExpires} required={true} onMutate={onInputDataCardDetails} />
         </div>
     )
 }
