@@ -20,6 +20,7 @@ export const AppProvider = ({ children }) => {
 
     // user details
     const auth = getAuth()
+    const navigate = useNavigate()
 
     const [userProfileDetails, setUserProfileDetails] = useState({
         userID: '',
@@ -45,8 +46,6 @@ export const AppProvider = ({ children }) => {
     }, [])
 
     // log out user
-    const navigate = useNavigate()
-
     const logOutUser = async () => {
         if (window.confirm('Are you sure you want to log out')) {
             try {
@@ -103,6 +102,7 @@ export const AppProvider = ({ children }) => {
         setCompareProductsList, // ProductsListCard
         userProfileDetails, // Profile, Onboarding, PrivateRoute, ProductsListCard, CartCostDetails, CheckoutForm, SelectedOrder
         logOutUser, // Profile, Onboarding
+        navigate, // ForgotPassword
         cartItems, // Cart, CartItem, CartCostDetails, Checkout
         setCartItems, // ProductDataBox, setCartItems, 
         clearCart, // CartCostDetails, CheckoutForm

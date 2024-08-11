@@ -44,13 +44,15 @@ main{
 }
 
 /* Login page / Sign Up page */
+.sing-up-page,
 .login-page,
-.sing-up-page{
+.forgot-password-page{
   margin-top: 100px;
 }
 
-.login-page form,
-.sing-up-page form{
+.login-page .login-page-content,
+.sing-up-page form,
+.forgot-password-page .forgot-password-content{
   max-width: 700px;
   margin: 0 auto;
   padding: 50px 40px;

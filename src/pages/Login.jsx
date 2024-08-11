@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom"
 // components
 import FormInput from "../components/FormInput"
-import loginUser from "../utils/loginUser";
+
 
 const Login = () => {
     const handleLoginUserSubmit = e => {
@@ -9,7 +10,7 @@ const Login = () => {
         const enteredEmail = e.target.elements[0].value.trim()
         const enteredPassword = e.target.elements[1].value
 
-        loginUser(enteredEmail, enteredPassword)       
+        loginUser(enteredEmail, enteredPassword)
 
         e.target.elements[0].value = ''
         e.target.elements[1].value = ''
@@ -18,24 +19,37 @@ const Login = () => {
     return (
         <div className='login-page'>
             <div className="container">
-                <form onSubmit={handleLoginUserSubmit}>
-                    <h3 className="text-center mb-4">
-                        Login
-                    </h3>
+                <section className="login-page-content">
 
-                    {/* login email */}
-                    <FormInput label='Email address' name="loginEmail" type='email' required={true} />
+                    <div className="login-page-main mb-4">
+                        <h3 className="text-center mb-4">
+                            Login
+                        </h3>
+                        
+                        <form onSubmit={handleLoginUserSubmit}>
+                            {/* login email */}
+                            <FormInput label='Email address' name="loginEmail" placeholder='Enter email address' type='email' required={true} />
 
-                    {/* login password */}
-                    <FormInput label='Password' name="loginPassword" type='password' required={true} />
+                            {/* login password */}
+                            <FormInput label='Password' name="loginPassword" placeholder='Enter password' type='password' required={true} />
 
-                    {/* login submit btn */}
-                    <button type="submit" className="btn btn-primary">
-                        Login
-                    </button>
-                </form>
+                            {/* login submit btn */}
+                            <button type="submit" className="btn btn-primary">
+                                Login
+                            </button>
+                        </form>
+                    </div>
+
+                    <div className="login-page-footer d-flex align-items-center justify-content-between">
+                        <p className="mb-0">
+                            Need a new password?
+                        </p>
+                        <Link to='/forgot-password' className="btn btn-warning">
+                            Forgot Password
+                        </Link>
+                    </div>
+                </section>
             </div>
-
         </div>
     )
 }

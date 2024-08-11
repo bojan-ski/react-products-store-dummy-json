@@ -6,6 +6,7 @@ import Dashboard from "./pages/Dashboard"
 import SelectedProduct from "./pages/SelectedProduct"
 import SignUp from "./pages/SignUp"
 import Login from "./pages/Login"
+import ForgotPassword from "./pages/ForgotPassword"
 import CompareProducts from "./pages/CompareProducts"
 import Cart from "./pages/Cart"
 import Checkout from "./pages/Checkout"
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
       {
         path: 'sign-up',
         element: <SignUp />,
+      },
+      {
+        path: 'forgot-password',
+        element: <ForgotPassword />,
       },
       {
         path: 'compare',
