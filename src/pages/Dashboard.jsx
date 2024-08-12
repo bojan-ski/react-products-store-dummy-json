@@ -22,6 +22,7 @@ export const loader = async () => {
 
 const Dashboard = () => {
   const { listOfProductsFromDB } = useLoaderData()
+  // console.log(listOfProductsFromDB);  
 
   return (
     <div className="dashboard-page">

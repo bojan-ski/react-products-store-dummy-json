@@ -9,20 +9,19 @@ import FilterFeature from "./FilterFeature"
 
 const SearchAndFilter = () => {
     const { listOfProductsFromDB } = useLoaderData()
-    const { setAvailableProducts, setProductsList, setCurrentPageNumber } = useGlobalContext()
+    const { setAvailableProducts, setProductsList, setUpdatedURL, setCurrentPageNumber } = useGlobalContext()
 
     const [disabledOption, setDisabledOption] = useState(false)
-    const [searchTerm, setSearchTerm] = useState('')
-    const [selectedCategory, setSelectedCategory] = useState('')
+    const [searchTerm, setSearchTerm] = useState('')    
 
     const handleResetFilterOption = () => {
         setDisabledOption(false)
-        setSelectedCategory('beauty')
         setSearchTerm('')
         setAvailableProducts(listOfProductsFromDB.total)
         setProductsList(listOfProductsFromDB.products)
+        setUpdatedURL('')
         setCurrentPageNumber(1)
-    }
+    }  
 
     return (
         <section className="search-filter-option mb-5">
@@ -44,7 +43,6 @@ const SearchAndFilter = () => {
                     <FilterFeature
                         disabledOption={disabledOption}
                         setDisabledOption={setDisabledOption}
-                        setSelectedCategory={setSelectedCategory}
                         handleResetFilterOption={handleResetFilterOption}
                     />
                 </div>

@@ -1,4 +1,3 @@
-import { useEffect } from "react"
 // api func
 import fetchDataFromDummyJSON from "../api/fetchDataFromDummyJSON"
 // context 
@@ -10,15 +9,7 @@ import scrollToTop from "../utils/scrollToTop"
 let productsListSkipNumber = 0
 
 const Pagination = () => {
-    const {availableProducts, updatedURL, setProductsList, currentPageNumber, setCurrentPageNumber} = useGlobalContext()
-
-    useEffect(() => {
-        // console.log('radi');
-        setCurrentPageNumber(1)
-        productsListSkipNumber = 0
-    },[])
-
-    // console.log(currentPageNumber);
+    const {availableProducts, updatedURL, setProductsList, currentPageNumber, setCurrentPageNumber} = useGlobalContext()    
 
     const updatedProductsList = async (productsListSkipNumber) => {
         const { products } = await fetchDataFromDummyJSON(updatedURL, `?limit=12&skip=${productsListSkipNumber}`)
@@ -31,26 +22,24 @@ const Pagination = () => {
     const paginationOption = (term) => {
         if (term === 'plus') {
             productsListSkipNumber += 12
-            // currentPageNumber += 1
             setCurrentPageNumber(curState => curState + 1)
         }
 
         if (term === 'minus') {
             productsListSkipNumber -= 12
-            // currentPageNumber -= 1
             setCurrentPageNumber(curState => curState - 1)
         }
 
         if (productsListSkipNumber <= 0) {
             productsListSkipNumber = 0
-            // currentPageNumber = 1
             setCurrentPageNumber(1)
+
             // call func
             updatedProductsList(productsListSkipNumber)
         } else if (productsListSkipNumber > availableProducts) {
             productsListSkipNumber = 0
-            // currentPageNumber = 1
             setCurrentPageNumber(1)
+
             // call func
             updatedProductsList(productsListSkipNumber)
         } else {
@@ -58,7 +47,10 @@ const Pagination = () => {
         }
 
         scrollToTop()
-    }    
+    }   
+    
+    // console.log(currentPageNumber);
+    if(currentPageNumber == 1) productsListSkipNumber = 0       
 
     return (
         // <div className="pagination mb-4 d-flex align-items-center justify-content-between">

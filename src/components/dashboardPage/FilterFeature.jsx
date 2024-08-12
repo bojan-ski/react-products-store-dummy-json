@@ -1,21 +1,22 @@
+import { useState } from "react"
 import { useLoaderData } from "react-router-dom"
 // context
 import { useGlobalContext } from "../../context"
 // api func
 import fetchDataFromDummyJSON from "../../api/fetchDataFromDummyJSON"
 
-const FilterFeature = ({ disabledOption, setDisabledOption, setSelectedCategory, handleResetFilterOption }) => {
+
+const FilterFeature = ({ disabledOption, setDisabledOption, handleResetFilterOption }) => {
     const { categories } = useLoaderData()
     const { setAvailableProducts, setUpdatedURL, setProductsList, setCurrentPageNumber} = useGlobalContext()
+
+    const [selectedCategory, setSelectedCategory] = useState('beauty')
 
     const handleApplySelectedFilterOption = async (e) => {
         e.preventDefault()
 
-        const selectedCategory = e.target.elements[0].value
-
         setDisabledOption(true)
         setUpdatedURL(`/category/${selectedCategory}`)
-        setSelectedCategory(selectedCategory)
 
         const filteredProducts = await fetchDataFromDummyJSON(`/category/${selectedCategory}`, '?limit=12&skip=0')
 
@@ -24,10 +25,12 @@ const FilterFeature = ({ disabledOption, setDisabledOption, setSelectedCategory,
         setCurrentPageNumber(1)
     }
 
+    // console.log(selectedCategory);    
+
     return (
         <>
             <form onSubmit={handleApplySelectedFilterOption}>
-                <select className="form-select mb-3" disabled={disabledOption}>
+                <select className="form-select mb-3" onChange={(e)=>setSelectedCategory(e.target.value)} disabled={disabledOption}>
                     {categories.map(category => {
                         // console.log(category);
                         return <option key={category} value={category} className="capitalize">

@@ -12,7 +12,7 @@ export const AppProvider = ({ children }) => {
     // search and filter options
     const [availableProducts, setAvailableProducts] = useState(0)
     const [updatedURL, setUpdatedURL] = useState('')
-    const [productsList, setProductsList] = useState([])
+    const [productsList, setProductsList] = useState([])   
 
     // pagination
     const [currentPageNumber, setCurrentPageNumber] = useState(1)
@@ -100,7 +100,7 @@ export const AppProvider = ({ children }) => {
         productsList, // ProductsList, 
         setProductsList, // ProductsList, SearchFeature, FilterFeature, Pagination
         currentPageNumber, // Pagination, CustomPagination
-        setCurrentPageNumber, // Pagination, CustomPagination, SearchFeature, FilterFeature, SearchAndFilter
+        setCurrentPageNumber, // Pagination, CustomPagination, SearchFeature, FilterFeature, SearchAndFilter, ProductsList
         compareProductsList, // ProductsListCard, CompareProducts
         setCompareProductsList, // ProductsListCard
         userProfileDetails, // Profile, Onboarding, PrivateRoute, ProductsListCard, CartCostDetails, CheckoutForm, SelectedOrder
