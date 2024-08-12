@@ -21,6 +21,10 @@ body{
   font-family: "Poppins", sans-serif;
 }
 
+a{
+  text-decoration: none;
+}
+
 .capitalize{
   text-transform: capitalize;
 }

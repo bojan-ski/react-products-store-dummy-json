@@ -57,12 +57,13 @@ export const AppProvider = ({ children }) => {
                 })
 
                 // success message
-                console.log('you have successfully logged out');
+                alert('you have successfully logged out');
 
                 // after the user has logged out, the user is redirected to the Dashboard page
                 navigate('/')
             } catch (error) {
                 //error message
+                alert('There was an error, please try again')
                 console.log(error);
             }
         }

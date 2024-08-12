@@ -1,5 +1,7 @@
 // firebase/firestore funcs
 import { getAuth, sendPasswordResetEmail } from 'firebase/auth'
+// toastify
+import { toast } from "react-toastify"
 
 const userResetPassword = async () => {
     try {
@@ -7,12 +9,12 @@ const userResetPassword = async () => {
         await sendPasswordResetEmail(auth, enteredEmail)
 
         // success message
-        alert('Please check your email to complete the reset password process');
+        toast.success('Please check your email to complete the reset password process');
 
         return true
     } catch (error) {
         // error message
-        alert('There was an error, please try again later')
+        toast.error('There was an error, please try again')
         console.error(error)
 
         return false

@@ -1,19 +1,33 @@
 import { Link } from "react-router-dom"
+// context
+import { useGlobalContext } from "../context"
+// api func
+import userLogin from "../api/userLogin"
 // components
 import FormInput from "../components/FormInput"
 
 
 const Login = () => {
-    const handleLoginUserSubmit = e => {
+    const {navigate} = useGlobalContext()
+
+    const handleLoginUserSubmit = async e => {
         e.preventDefault()
 
         const enteredEmail = e.target.elements[0].value.trim()
         const enteredPassword = e.target.elements[1].value
 
-        loginUser(enteredEmail, enteredPassword)
+        // const response = loginUser(enteredEmail, enteredPassword)
+        const response = await userLogin(enteredEmail, enteredPassword)
+        console.log(response);        
 
-        e.target.elements[0].value = ''
-        e.target.elements[1].value = ''
+        if(response){
+            e.target.elements[0].value = ''
+            e.target.elements[1].value = ''
+
+            // navigate user
+            setTimeout(() => navigate('/profile'), 1500)
+            // window.location.href = '/profile'           
+        }
     }
 
     return (
@@ -25,7 +39,7 @@ const Login = () => {
                         <h3 className="text-center mb-4">
                             Login
                         </h3>
-                        
+
                         <form onSubmit={handleLoginUserSubmit}>
                             {/* login email */}
                             <FormInput label='Email address' name="loginEmail" placeholder='Enter email address' type='email' required={true} />

@@ -1,21 +1,24 @@
 // firebase/firestore funcs
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+// toastify
+import { toast } from "react-toastify"
 
-
-const loginUser = async (email, password) => {    
-    try {        
+const userLogin = async (email, password) => {
+    try {
         const auth = getAuth()
         await signInWithEmailAndPassword(auth, email, password)
 
         //success message
-        console.log('user logged in');
+        toast.success('user logged in');
 
-        // navigate user
-        window.location.href = '/profile'
+        return true
     } catch (error) {
         //error message
+        toast.error('There was an error, please try again')
         console.log(error);
+
+        return false
     }
 }
 
-export default loginUser
+export default userLogin

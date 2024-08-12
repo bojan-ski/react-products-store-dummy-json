@@ -5,6 +5,8 @@ import AppLayout from "./pages/AppLayout"
 import Dashboard from "./pages/Dashboard"
 import SelectedProduct from "./pages/SelectedProduct"
 import SignUp from "./pages/SignUp"
+import TermsAndConditions from "./pages/TermsAndConditions"
+import PrivacyPolicy from "./pages/PrivacyPolicy"
 import Login from "./pages/Login"
 import ForgotPassword from "./pages/ForgotPassword"
 import CompareProducts from "./pages/CompareProducts"
@@ -41,42 +43,50 @@ const router = createBrowserRouter([
         loader: listOfProductsLoader
       },
       {
-        path: ':id',
+        path: '/:id',
         element: <SelectedProduct />,
         loader: selectedProductLoader
       },
       {
-        path: 'login',
-        element: <Login />,
-      },
-      {
-        path: 'sign-up',
+        path: '/sign-up',
         element: <SignUp />,
       },
       {
-        path: 'forgot-password',
+        path: '/terms-and-conditions',
+        element: <TermsAndConditions />,
+      },
+      {
+        path: '/privacy-policy',
+        element: <PrivacyPolicy />,
+      },
+      {
+        path: '/login',
+        element: <Login />,
+      },
+      {
+        path: '/forgot-password',
         element: <ForgotPassword />,
       },
       {
-        path: 'compare',
+        path: '/compare',
         element: <CompareProducts />,
       },
       {
-        path: 'compare/:id',
+        path: '/compare/:id',
         element: <SelectedProduct />,
         loader: selectedProductLoader
       },
       {
-        path: 'cart',
+        path: '/cart',
         element: <Cart />,
       },
       {
-        path: 'checkout',
+        path: '/checkout',
         element: <PrivateRoute><Checkout /></PrivateRoute>,
         loader: userShippingDetailsLoader
       },
       {
-        path: 'profile',
+        path: '/profile',
         children: [
           {
             index: true,
@@ -106,11 +116,11 @@ const router = createBrowserRouter([
         ]
       },
       {
-        path: 'about',
+        path: '/about',
         element: <About />,
       },
       {
-        path: 'contact',
+        path: '/contact',
         element: <ContactUs />
       }
     ]
