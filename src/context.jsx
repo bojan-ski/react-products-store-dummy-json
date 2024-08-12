@@ -2,6 +2,8 @@ import { useContext, createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 // firebase/firestore funcs
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth"
+// toastify
+import { toast } from "react-toastify";
 
 
 const AppContext = createContext()
@@ -57,13 +59,13 @@ export const AppProvider = ({ children }) => {
                 })
 
                 // success message
-                alert('you have successfully logged out');
+                toast.success('you have successfully logged out');
 
                 // after the user has logged out, the user is redirected to the Dashboard page
                 navigate('/')
             } catch (error) {
                 //error message
-                alert('There was an error, please try again')
+                toast.error('There was an error, please try again')
                 console.log(error);
             }
         }
@@ -86,7 +88,7 @@ export const AppProvider = ({ children }) => {
                 orderCost: 0
             });
 
-            alert('Product removed form cart')
+            toast.success('Product removed form cart')
         }
     }
 

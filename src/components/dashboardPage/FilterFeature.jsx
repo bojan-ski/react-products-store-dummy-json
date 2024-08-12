@@ -1,8 +1,8 @@
 import { useLoaderData } from "react-router-dom"
 // context
 import { useGlobalContext } from "../../context"
-// utils func
-import fetchDataFromDB from "../../utils/fetchDataFromDB"
+// api func
+import fetchDataFromDummyJSON from "../../api/fetchDataFromDummyJSON"
 
 const FilterFeature = ({ disabledOption, setDisabledOption, setSelectedCategory, handleResetFilterOption }) => {
     const { categories } = useLoaderData()
@@ -17,7 +17,7 @@ const FilterFeature = ({ disabledOption, setDisabledOption, setSelectedCategory,
         setUpdatedURL(`/category/${selectedCategory}`)
         setSelectedCategory(selectedCategory)
 
-        const filteredProducts = await fetchDataFromDB(`/category/${selectedCategory}`, '?limit=12&skip=0')
+        const filteredProducts = await fetchDataFromDummyJSON(`/category/${selectedCategory}`, '?limit=12&skip=0')
 
         setAvailableProducts(filteredProducts.total)
         setProductsList(filteredProducts.products)

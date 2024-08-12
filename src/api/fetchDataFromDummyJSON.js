@@ -1,6 +1,9 @@
 import axios from "axios"
+// toastify
+import { toast } from "react-toastify"
 
-const fetchDataFromDB = async (updatedURL, path) => {
+
+const fetchDataFromDummyJSON = async (updatedURL, path) => {
     const url = `${import.meta.env.VITE_FIREBASE_PRODUCTS_API_URL}`
     // console.log(updatedURL);
     // console.log(path);
@@ -8,20 +11,23 @@ const fetchDataFromDB = async (updatedURL, path) => {
     try {
         let response
 
-        if(updatedURL == ''){
+        if (updatedURL == '') {
             response = await axios.get(`${url}${path}`)
             // console.log(`${url}${path}`);
-        }else{
+        } else {
             response = await axios.get(`${url}${updatedURL}${path}`)
             // console.log(`${url}${updatedURL}${path}`);
         }
 
         const data = await response.data
 
-        return data        
+        return data
     } catch (error) {
         console.log(error);
+        toast.error('There was an error fetching data. Please come back later')
+
+        return null
     }
 }
 
-export default fetchDataFromDB
+export default fetchDataFromDummyJSON

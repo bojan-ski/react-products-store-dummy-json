@@ -1,6 +1,6 @@
-import { useLoaderData, Link } from "react-router-dom"
-// utils 
-import fetchDataFromDB from "../utils/fetchDataFromDB"
+import { useLoaderData } from "react-router-dom"
+// api func 
+import fetchDataFromDummyJSON from "../api/fetchDataFromDummyJSON"
 // components
 import BackButtons from "../components/BackButtons"
 import PageHeader from "../components/PageHeader"
@@ -10,9 +10,10 @@ import DescriptionBox from "../components/selectedProductPage/DescriptionBox"
 import ReviewsBox from "../components/selectedProductPage/ReviewsBox"
 
 
+
 // LOADER
 export const loader = async ({ params }) => {
-    const selectedProductDetails = await fetchDataFromDB('', `/${params.id}`)
+    const selectedProductDetails = await fetchDataFromDummyJSON('', `/${params.id}`)
 
     return selectedProductDetails
 }

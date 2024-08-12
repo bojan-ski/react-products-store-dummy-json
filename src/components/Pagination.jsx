@@ -1,6 +1,6 @@
 import { useEffect } from "react"
-// utils func
-import fetchDataFromDB from "../utils/fetchDataFromDB"
+// api func
+import fetchDataFromDummyJSON from "../api/fetchDataFromDummyJSON"
 // context 
 import { useGlobalContext } from "../context"
 // utils func
@@ -21,7 +21,7 @@ const Pagination = () => {
     // console.log(currentPageNumber);
 
     const updatedProductsList = async (productsListSkipNumber) => {
-        const { products } = await fetchDataFromDB(updatedURL, `?limit=12&skip=${productsListSkipNumber}`)
+        const { products } = await fetchDataFromDummyJSON(updatedURL, `?limit=12&skip=${productsListSkipNumber}`)
         // console.log(products);
 
         setProductsList(products)

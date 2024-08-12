@@ -1,7 +1,8 @@
 // context
 import { useGlobalContext } from "../../context"
-// utils func
-import fetchDataFromDB from "../../utils/fetchDataFromDB"
+// api func
+import fetchDataFromDummyJSON from "../../api/fetchDataFromDummyJSON"
+
 
 const SearchFeature = ({ searchTerm, setSearchTerm, disabledOption, setDisabledOption, handleResetFilterOption }) => {
     const { setAvailableProducts, setProductsList, setCurrentPageNumber } = useGlobalContext()
@@ -13,7 +14,7 @@ const SearchFeature = ({ searchTerm, setSearchTerm, disabledOption, setDisabledO
 
         setDisabledOption(true)
 
-        const searchResults = await fetchDataFromDB(`/search`, `?q=${searchTerm}`)
+        const searchResults = await fetchDataFromDummyJSON(`/search`, `?q=${searchTerm}`)
 
         setAvailableProducts(searchResults.total)
         setProductsList(searchResults.products)
