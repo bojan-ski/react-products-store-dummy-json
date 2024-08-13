@@ -2,12 +2,14 @@ import { useState } from "react"
 import { useLoaderData } from "react-router-dom"
 // context
 import { useGlobalContext } from "../../context"
+// toastify
+import { toast } from "react-toastify"
 
 
 const ProductDataBox = () => {
     const { id, availabilityStatus, brand, category, description, dimensions, discountPercentage, images, minimumOrderQuantity, price, rating, returnPolicy, reviews, shippingInformation, stock, tags, thumbnail, title, warrantyInformation, weight } = useLoaderData()
 
-    const { setCartItems } = useGlobalContext()
+    const { cartItems, setCartItems } = useGlobalContext()
 
     const [cartItem, setCartItem] = useState({
         id,
@@ -30,10 +32,18 @@ const ProductDataBox = () => {
         }));
     }
 
-    // console.log(cartItem);
+    console.log(cartItem);
+    console.log(cartItems);    
 
     const addProductToCart = () => {
         // console.log(cartItem);
+        // const exists = cartItems.cartItemsList.some(item => item.id === cartItem.id);
+        // console.log(exists);        
+
+        if(cartItems.cartItemsList.some(product => product.id === cartItem.id)){
+            toast.warning('Product is already in the cart')
+            return 
+        }
 
         setCartItems((prevState) => {
             const updatedCartItems = [...prevState.cartItemsList, cartItem];
@@ -49,7 +59,7 @@ const ProductDataBox = () => {
         })
 
         // console.log(cartItem);
-        alert('product added to cart')
+        toast.success('product added to cart')
     }
 
     return (

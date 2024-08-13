@@ -74,12 +74,12 @@ const CartItem = ({ cartItem }) => {
                             </p>
                         )}
                     </div>
-                    <h5 className="fw-bold">
+                    <h6 className="fw-bold">
                         {title}
-                    </h5>
-                    <h5 className="mb-0">
+                    </h6>
+                    <h6 className="mb-0">
                         ${price}
-                    </h5>
+                    </h6>
                 </div>
 
                 <div className="cart-item-details-3">
@@ -96,7 +96,7 @@ const CartItem = ({ cartItem }) => {
                     </select>
 
                     <p className='fw-bold mb-0'>
-                        {totalPrice}
+                        $ {totalPrice}
                     </p>
                 </div>
 

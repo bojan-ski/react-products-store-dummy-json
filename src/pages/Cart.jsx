@@ -19,12 +19,12 @@ const Cart = () => {
                 {cartItems.cartItemsList && cartItems.cartItemsList.length > 0 ? (
                     <div className="row">
                         {/* row item 1 */}
-                        <section className="cart-items-details col-12 col-md-8 ">
+                        <section className="cart-items-details col-12 col-lg-8 ">
                             <CartItemsList />
                         </section>
 
                         {/* row item 2 */}
-                        <section className="cart-cost-details col-12 col-md-4">
+                        <section className="cart-cost-details col-12 col-lg-4">
                             <CartCostDetails />
                         </section>
                     </div>

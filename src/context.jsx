@@ -75,7 +75,7 @@ export const AppProvider = ({ children }) => {
     const [cartItems, setCartItems] = useState({
         cartItemsList: [],
         totalQuantity: 0,
-        shipping: 50,
+        shipping: 10,
         orderCost: 0
     })
 
@@ -106,7 +106,7 @@ export const AppProvider = ({ children }) => {
         userProfileDetails, // Profile, Onboarding, PrivateRoute, ProductsListCard, CartCostDetails, CheckoutForm, SelectedOrder
         logOutUser, // Profile, Onboarding
         navigate, // ForgotPassword
-        cartItems, // Cart, CartItem, CartCostDetails, Checkout
+        cartItems, // ProductDataBox, Cart, CartItem, CartCostDetails, Checkout
         setCartItems, // ProductDataBox, setCartItems, 
         clearCart, // CartCostDetails, CheckoutForm
     }}>
