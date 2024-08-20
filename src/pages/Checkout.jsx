@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom"
 // context
 import { useGlobalContext } from "../context"
 // components
@@ -13,12 +12,6 @@ const Checkout = () => {
   return (
     <div className="checkout-page">
       <div className="container">
-
-        {/* <section className="d-flex align-items-center justify-content-between my-5">
-          <Link to='/cart' className="btn btn-warning">
-            Back
-          </Link>
-        </section> */}
 
         <BackButtons backPath='/cart'/>
 

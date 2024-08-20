@@ -13,7 +13,7 @@ const CartCostDetails = () => {
 
             <div className="row border-bottom pb-2 mb-3">
                 {/* row item 1 */}
-                <div className="col-12 col-md-6">
+                <div className="col-12 col-md-6 text-center">
                     <p className='mb-0'>
                         Number of products:
                     </p>
@@ -22,7 +22,7 @@ const CartCostDetails = () => {
                     </p>
                 </div>
                 {/* row item 2 */}
-                <div className="col-12 col-md-6">
+                <div className="col-12 col-md-6 text-center">
                     <p className='mb-0'>
                         Total Quantity:
                     </p>
@@ -31,21 +31,21 @@ const CartCostDetails = () => {
                     </p>
                 </div>
                 {/* row item 3 */}
-                <div className="col-12 col-md-6">
+                <div className="col-12 col-md-6 text-center">
                     <p className='mb-0'>
                         Order Cost:
                     </p>
                     <p className='fw-bold'>
-                        {cartItems.orderCost}
+                        $ {cartItems.orderCost}
                     </p>
                 </div>
                 {/* row item 4 */}
-                <div className="col-12 col-md-6">
+                <div className="col-12 col-md-6 text-center">
                     <p className='mb-0'>
                         Shipping Cost:
                     </p>
                     <p className='fw-bold'>
-                        {cartItems.shipping}
+                        + {cartItems.shipping}%
                     </p>
                 </div>
             </div>
@@ -55,7 +55,7 @@ const CartCostDetails = () => {
                     Grand Total:
                 </h5>
                 <p className='fw-bold'>
-                    {+cartItems.orderCost + cartItems.shipping}
+                    $ {(+cartItems.orderCost + (+cartItems.orderCost / cartItems.shipping)).toFixed(2)}
                 </p>
             </div>
 

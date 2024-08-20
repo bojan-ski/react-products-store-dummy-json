@@ -29,7 +29,7 @@ const Cart = () => {
                         </section>
                     </div>
                 ) : (
-                    <h1>Your cart is empty</h1>
+                    <h1 className="text-center">Your cart is empty</h1>
                 )}
             </div>
         </div>

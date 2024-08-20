@@ -88,7 +88,7 @@ export const AppProvider = ({ children }) => {
                 orderCost: 0
             });
 
-            toast.success('Product removed form cart')
+            toast.success('Cart has been emptied.')
         }
     }
 

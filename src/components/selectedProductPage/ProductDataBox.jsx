@@ -32,8 +32,8 @@ const ProductDataBox = () => {
         }));
     }
 
-    console.log(cartItem);
-    console.log(cartItems);    
+    // console.log(cartItem);
+    // console.log(cartItems);    
 
     const addProductToCart = () => {
         // console.log(cartItem);

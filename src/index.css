@@ -79,14 +79,7 @@ main{
   max-height: 500px;
 }
 
-/* Cart page */
-/* CartItemsList component*/
-.cart-item-details .cart-item-details-1 img{
-  height: 100px;
-}
-
 /* Profile page */
-
 .profile-page .profile-page-shipping-details-form{
   width: 75%;
   margin: 0 auto;

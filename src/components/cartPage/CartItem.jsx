@@ -1,5 +1,8 @@
 // context
 import { useGlobalContext } from "../../context";
+// toastify
+import { toast } from "react-toastify";
+
 
 const CartItem = ({ cartItem }) => {
     // console.log(cartItem);
@@ -30,17 +33,17 @@ const CartItem = ({ cartItem }) => {
             };
         });
 
-        alert('Cart updated')
+        toast.success('Cart updated')
     }
 
     const handleRemoveProduct = () => {
-        if (window.confirm('Are you sure you want to remove product?')){
+        if (window.confirm('Are you sure you want to remove product?')) {
             setCartItems(prevState => {
                 const newCartItemsList = prevState.cartItemsList.filter(cartItem => cartItem.id !== id);
-    
+
                 const newTotalQuantity = newCartItemsList.reduce((acc, item) => acc + item.quantity, 0);
                 const newOrderCost = newCartItemsList.reduce((acc, item) => acc + item.totalPrice, 0);
-    
+
                 return {
                     ...prevState,
                     cartItemsList: newCartItemsList,
@@ -49,61 +52,61 @@ const CartItem = ({ cartItem }) => {
                 };
             });
 
-            alert('Product removed form cart')
+            toast.success('Product removed form cart')
         }
     }
 
-
     return (
         <div className="col-12 mb-3">
+            <div className="bg-info cart-item-details rounded rounded-4 p-3">
+                <div className="row align-items-center">
 
-            <div className="bg-info cart-item-details rounded rounded-4 p-3 d-flex flex-row align-items-center justify-content-around">
+                    {/* row item 1 */}
+                    <div className="col-2 d-none d-md-block">
+                        <img src={thumbnail} alt={title} className="img-fluid" />
+                    </div>
 
-                <div className="cart-item-details-1 d-none d-lg-block">
-                    <img src={thumbnail} alt={title} className="img-fluid" />
-                </div>
-
-                <div className="cart-item-details-2">
-                    <div className="d-flex justify-content-between align-items-center mb-2">
-                        <p className="mb-0">
+                    {/* row item 2 */}
+                    <div className="col-5 col-md-4">
+                        <p className="d-none d-md-block">
                             {category}
                         </p>
-                        {brand && (
-                            <p className="mb-0">
-                                {brand}
-                            </p>
-                        )}
+                        <h6 className="fw-bold">
+                            {title}
+                        </h6>
+                        <h6 className="mb-0">
+                            ${price}
+                        </h6>
                     </div>
-                    <h6 className="fw-bold">
-                        {title}
-                    </h6>
-                    <h6 className="mb-0">
-                        ${price}
-                    </h6>
-                </div>
 
-                <div className="cart-item-details-3">
-                    <select className="form-select mb-2" value={quantity} onChange={handleUpdatedCart}>
-                        {Array.from({ length: 10 }, (_, idx) => {
-                            const amount = idx + 1
+                    {/* row item 3 */}
+                    <div className="col-2">
+                        <select className="form-select" value={quantity} onChange={handleUpdatedCart}>
+                            {Array.from({ length: 10 }, (_, idx) => {
+                                const amount = idx + 1
 
-                            return (
-                                <option key={amount} value={amount}>
-                                    {amount}
-                                </option>
-                            )
-                        })}
-                    </select>
+                                return (
+                                    <option key={amount} value={amount}>
+                                        {amount}
+                                    </option>
+                                )
+                            })}
+                        </select>
+                    </div>
 
-                    <p className='fw-bold mb-0'>
-                        $ {totalPrice}
-                    </p>
-                </div>
+                    {/* row item 4 */}
+                    <div className="col-2">
+                        <p className='fw-bold text-center mb-0'>
+                            $ {totalPrice.toFixed(2)}
+                        </p>
+                    </div>
 
-                <div className="cart-item-details-3">
-                    <button className="btn btn-danger" onClick={handleRemoveProduct}>
-                        Remove
-                    </button>
+                    {/* row item 5 */}
+                    <div className="col-2">
+                        <button className="btn btn-danger" onClick={handleRemoveProduct}>
+                            Remove
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
