@@ -7,7 +7,6 @@ import { toast } from "react-toastify";
 const CartItem = ({ cartItem }) => {
     // console.log(cartItem);
     const { setCartItems } = useGlobalContext()
-    // console.log(cartItems);
 
     const { id, thumbnail, title, brand, category, price, quantity, totalPrice } = cartItem
 
@@ -24,12 +23,14 @@ const CartItem = ({ cartItem }) => {
 
             const newTotalQuantity = newCartItemsList.reduce((acc, item) => acc + item.quantity, 0);
             const newOrderCost = newCartItemsList.reduce((acc, item) => acc + item.totalPrice, 0);
+            const newGradTotal = newOrderCost + (newOrderCost / prevState.shipping)
 
             return {
                 ...prevState,
                 cartItemsList: newCartItemsList,
                 totalQuantity: newTotalQuantity,
-                orderCost: newOrderCost.toFixed(2),
+                orderCost: +newOrderCost.toFixed(2),
+                gradTotal: +newGradTotal.toFixed(2)
             };
         });
 
@@ -43,12 +44,14 @@ const CartItem = ({ cartItem }) => {
 
                 const newTotalQuantity = newCartItemsList.reduce((acc, item) => acc + item.quantity, 0);
                 const newOrderCost = newCartItemsList.reduce((acc, item) => acc + item.totalPrice, 0);
+                const newGradTotal = newOrderCost + (newOrderCost / prevState.shipping)
 
                 return {
                     ...prevState,
                     cartItemsList: newCartItemsList,
                     totalQuantity: newTotalQuantity,
-                    orderCost: newOrderCost.toFixed(2),
+                    orderCost: +newOrderCost.toFixed(2),
+                    gradTotal: +newGradTotal.toFixed(2)
                 };
             });
 

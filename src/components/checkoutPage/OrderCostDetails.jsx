@@ -1,8 +1,15 @@
-const OrderCostDetails = ({ cartItems }) => {
-    const { cartItemsList, totalQuantity, shipping, orderCost } = cartItems
+// context
+import { useGlobalContext } from "../../context"
+
+
+const OrderCostDetails = () => {
+    const { cartItems } = useGlobalContext()
+    // console.log(cartItems);
+    
+    const { cartItemsList, totalQuantity, shipping, orderCost, gradTotal } = cartItems
 
     return (
-        <section className="bg-info py-2 px-4 mb-3 rounded-4">
+        <section className="bg-info p-3 mb-5 rounded-4">
             <div className="row text-center">
                 {/* row item 1 */}
                 <div className="col-6">
@@ -15,7 +22,7 @@ const OrderCostDetails = ({ cartItems }) => {
                     <p className='mb-0'>
                         Total Quantity:
                     </p>
-                    <p className='fw-bold'>
+                    <p className='fw-bold mb-0'>
                         {totalQuantity}
                     </p>
                 </div>
@@ -26,13 +33,13 @@ const OrderCostDetails = ({ cartItems }) => {
                         Shipping Cost:
                     </p>
                     <p className='fw-bold'>
-                        {shipping}
+                        + {shipping} %
                     </p>
-                    <h5 className=''>
+                    <h5 className='mb-0'>
                         Grand Total:
                     </h5>
-                    <p className='fw-bold'>
-                        {+orderCost + shipping}
+                    <p className='fw-bold mb-0'>
+                        $ {gradTotal}
                     </p>
                 </div>
             </div>

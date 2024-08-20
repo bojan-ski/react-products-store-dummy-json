@@ -12,7 +12,7 @@ export const AppProvider = ({ children }) => {
     // search and filter options
     const [availableProducts, setAvailableProducts] = useState(0)
     const [updatedURL, setUpdatedURL] = useState('')
-    const [productsList, setProductsList] = useState([])   
+    const [productsList, setProductsList] = useState([])
 
     // pagination
     const [currentPageNumber, setCurrentPageNumber] = useState(1)
@@ -72,21 +72,21 @@ export const AppProvider = ({ children }) => {
     }
 
     // cart features
-    const [cartItems, setCartItems] = useState({
+    const initCartState = {
         cartItemsList: [],
         totalQuantity: 0,
         shipping: 10,
-        orderCost: 0
-    })
+        orderCost: 0,
+        gradTotal: 0
+    }
 
-    const clearCart = () => {
+    const [cartItems, setCartItems] = useState(initCartState)
+
+    const clearCart = () => setCartItems(initCartState);
+
+    const handleClearCart = () => {
         if (window.confirm('Are you sure you want to clear the Cart?')) {
-            setCartItems({
-                cartItemsList: [],
-                totalQuantity: 0,
-                shipping: 50,
-                orderCost: 0
-            });
+            clearCart();
 
             toast.success('Cart has been emptied.')
         }
@@ -108,7 +108,8 @@ export const AppProvider = ({ children }) => {
         navigate, // ForgotPassword
         cartItems, // ProductDataBox, Cart, CartItem, CartCostDetails, Checkout
         setCartItems, // ProductDataBox, setCartItems, 
-        clearCart, // CartCostDetails, CheckoutForm
+        clearCart, // CheckoutForm
+        handleClearCart, // CheckoutForm, CartCostDetails
     }}>
         {children}
     </AppContext.Provider>

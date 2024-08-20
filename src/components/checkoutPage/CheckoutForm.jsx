@@ -8,9 +8,10 @@ import submitOrder from "../../api/submitOrder"
 import CreditCardDetails from "./CreditCardDetails"
 import ShippingDetails from "./ShippingDetails"
 
-const CheckoutForm = ({ cartItems }) => {
-    const { userProfileDetails, clearCart } = useGlobalContext()
+
+const CheckoutForm = () => {
     const userShippingDetails = useLoaderData()
+    const { userProfileDetails, cartItems, clearCart, handleClearCart, navigate } = useGlobalContext()
     // console.log(userShippingDetails);  
 
     const [cardDetails, setCardDetails] = useState({
@@ -26,45 +27,6 @@ const CheckoutForm = ({ cartItems }) => {
         zip: '',
         state: ''
     })
-
-    const handleSubmitOrderDetails = async e => {
-        e.preventDefault()
-
-        if (window.confirm('Place Order?')) {
-            console.log('handleSubmitOrderDetails');
-
-
-            const orderFormsData = {
-                orderDetails: cartItems,
-                grandTotal: +(+cartItems.orderCost + cartItems.shipping).toFixed(2),
-                cardDetails,
-                shippingDetails
-            }
-
-            // const orderFormsData = {
-            //     orderDetails: cartItems,
-            //     grandTotal: +(+cartItems.orderCost + cartItems.shipping).toFixed(2),
-            //     cardDetails: {
-            //         nameOnCard: e.target[0].value.trim(),
-            //         cardNumber: e.target[1].value.trim(),
-            //         secureCode: e.target[2].value.trim(),
-            //         cardExpires: e.target[3].value.trim()
-            //     },
-            //     shippingDetails: {
-            //         streetAddress: e.target[4].value.trim(),
-            //         city: e.target[5].value.trim(),
-            //         zip: e.target[6].value.trim(),
-            //         state: e.target[7].value.trim()
-            //     }
-            // }
-
-            // console.log(orderFormsData);
-            await submitOrder(userProfileDetails, orderFormsData)
-        }
-    }
-
-    // console.log(cardDetails);
-    // console.log(shippingDetails); 
 
     const handleSetShippingDetails = () => {
         setShippingDetails({
@@ -90,6 +52,47 @@ const CheckoutForm = ({ cartItems }) => {
                 zip: '',
                 state: ''
             })
+        }
+    }
+
+    const handleSubmitOrderDetails = async e => {
+        e.preventDefault()
+
+        if (window.confirm('Place Order?')) {
+            console.log('handleSubmitOrderDetails');
+
+            const orderFormsData = {
+                orderDetails: cartItems,
+                grandTotal: cartItems.gradTotal,
+                cardDetails,
+                shippingDetails
+            }
+
+            // const orderFormsData = {
+            //     orderDetails: cartItems,
+            //     grandTotal: +(+cartItems.orderCost + cartItems.shipping).toFixed(2),
+            //     cardDetails: {
+            //         nameOnCard: e.target[0].value.trim(),
+            //         cardNumber: e.target[1].value.trim(),
+            //         secureCode: e.target[2].value.trim(),
+            //         cardExpires: e.target[3].value.trim()
+            //     },
+            //     shippingDetails: {
+            //         streetAddress: e.target[4].value.trim(),
+            //         city: e.target[5].value.trim(),
+            //         zip: e.target[6].value.trim(),
+            //         state: e.target[7].value.trim()
+            //     }
+            // }
+
+            // console.log(orderFormsData);
+            const response = await submitOrder(userProfileDetails, orderFormsData)
+
+            if(response) setTimeout(() => {
+                clearCart()
+                navigate('/profile')
+            }, 1500)
+            
         }
     }
 
@@ -124,7 +127,7 @@ const CheckoutForm = ({ cartItems }) => {
                         Proceed
                     </button>
 
-                    <button type="button" className='btn btn-danger px-3 py-2' onClick={clearCart}>
+                    <button type="button" className='btn btn-danger px-3 py-2' onClick={handleClearCart}>
                         Cancel
                     </button>
                 </div>

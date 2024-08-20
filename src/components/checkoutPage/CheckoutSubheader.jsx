@@ -1,7 +1,7 @@
 const CheckoutSubheader = ({ textOne, textTwo }) => {
     return (
         <>
-            <h5 className="text-center">
+            <h5 className="text-center mb-3">
                 {textOne}
             </h5>
             <h6 className="text-center mb-4">

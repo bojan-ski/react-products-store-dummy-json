@@ -17,8 +17,7 @@ const Login = () => {
         const enteredPassword = e.target.elements[1].value
 
         // const response = loginUser(enteredEmail, enteredPassword)
-        const response = await userLogin(enteredEmail, enteredPassword)
-        console.log(response);        
+        const response = await userLogin(enteredEmail, enteredPassword)      
 
         if(response){
             e.target.elements[0].value = ''

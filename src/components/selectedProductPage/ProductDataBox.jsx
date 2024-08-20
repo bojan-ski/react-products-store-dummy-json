@@ -49,12 +49,14 @@ const ProductDataBox = () => {
             const updatedCartItems = [...prevState.cartItemsList, cartItem];
             const updatedTotalQuantity = updatedCartItems.reduce((acc, item) => acc + item.quantity, 0);
             const updatedOrderCost = updatedCartItems.reduce((acc, item) => acc + item.totalPrice, 0);
+            const updatedGradTotal = updatedOrderCost + (updatedOrderCost / prevState.shipping)
 
             return {
                 ...prevState,
                 cartItemsList: updatedCartItems,
                 totalQuantity: updatedTotalQuantity,
-                orderCost: updatedOrderCost.toFixed(2)
+                orderCost: +updatedOrderCost.toFixed(2),
+                gradTotal: +updatedGradTotal.toFixed(2)
             };
         })
 

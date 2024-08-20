@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useGlobalContext } from '../../context'
 
 const CartCostDetails = () => {
-    const { cartItems, clearCart, userProfileDetails } = useGlobalContext()
+    const { cartItems, handleClearCart, userProfileDetails } = useGlobalContext()
 
     return (
         <div className='bg-info px-4 py-3 rounded rounded-4'>
@@ -69,7 +69,7 @@ const CartCostDetails = () => {
                         Sign In
                     </Link>
                 )}
-                <button className='btn btn-danger px-3 py-2' onClick={clearCart}>
+                <button className='btn btn-danger px-3 py-2' onClick={handleClearCart}>
                     Cancel
                 </button>
             </div>
