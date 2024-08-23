@@ -69,23 +69,6 @@ const CheckoutForm = () => {
                 shippingDetails
             }
 
-            // const orderFormsData = {
-            //     orderDetails: cartItems,
-            //     grandTotal: +(+cartItems.orderCost + cartItems.shipping).toFixed(2),
-            //     cardDetails: {
-            //         nameOnCard: e.target[0].value.trim(),
-            //         cardNumber: e.target[1].value.trim(),
-            //         secureCode: e.target[2].value.trim(),
-            //         cardExpires: e.target[3].value.trim()
-            //     },
-            //     shippingDetails: {
-            //         streetAddress: e.target[4].value.trim(),
-            //         city: e.target[5].value.trim(),
-            //         zip: e.target[6].value.trim(),
-            //         state: e.target[7].value.trim()
-            //     }
-            // }
-
             console.log(orderFormsData);
             const response = await submitOrder(userProfileDetails, orderFormsData)
 

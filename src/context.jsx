@@ -55,26 +55,6 @@ export const AppProvider = ({ children }) => {
         fetchUserDetails()
     },[])
 
-    // useEffect(() => {
-    //     onAuthStateChanged(auth, (user) => {
-    //         if (user) {
-    //             auth.currentUser ? (
-    //                 setUserProfileDetails({
-    //                     userID: user.uid,
-    //                     userName: user.displayName,
-    //                     userStoreCredit: fetchUserStoreCreditFromFirebase(user.email)
-    //                 })
-    //             ) : (
-    //                 setUserProfileDetails({
-    //                     userID: '',
-    //                     userName: '',
-    //                     userStoreCredit: 0
-    //                 })
-    //             )
-    //         }
-    //     })
-    // }, [])
-
     // log out user
     const logOutUser = async () => {
         if (window.confirm('Are you sure you want to log out')) {
@@ -132,11 +112,12 @@ export const AppProvider = ({ children }) => {
         setCurrentPageNumber, // Pagination, CustomPagination, SearchFeature, FilterFeature, SearchAndFilter, ProductsList
         compareProductsList, // ProductsListCard, CompareProducts
         setCompareProductsList, // ProductsListCard
-        userProfileDetails, // Profile, Onboarding, PrivateRoute, ProductsListCard, CartCostDetails, CheckoutForm, SelectedOrder
+        userProfileDetails, // Profile, Onboarding, PrivateRoute, ProductsListCard, CartCostDetails, CheckoutForm, SelectedOrder, OrderCostDetails
+        setUserProfileDetails, // OrderCostDetails
         logOutUser, // Profile, Onboarding
         navigate, // ForgotPassword
         cartItems, // ProductDataBox, Cart, CartItem, CartCostDetails, Checkout
-        setCartItems, // ProductDataBox, setCartItems, 
+        setCartItems, // ProductDataBox, OrderCostDetails
         clearCart, // CheckoutForm
         handleClearCart, // CheckoutForm, CartCostDetails
     }}>

@@ -10,8 +10,8 @@ const Onboarding = () => {
     <div className={`onboarding mb-3 ${userProfileDetails.userName ? 'd-flex align-items-center justify-content-between' : 'text-end'}`}>
       {userProfileDetails.userName ? (
         <>
-          <div className="d-flex align-items-center">
-            <p className="mb-0">
+          <div className="d-flex align-items-center fw-bold">
+            <p className="text-muted mb-0">
               Store credit:
             </p>
             <span className="ms-1">

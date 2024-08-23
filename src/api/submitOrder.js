@@ -1,5 +1,5 @@
 // firebase/firestore funcs
-import { addDoc, collection, doc, serverTimestamp } from "firebase/firestore";
+import { addDoc, collection, doc, serverTimestamp, updateDoc } from "firebase/firestore";
 import { db } from "../firebase.config";
 // utils func 
 import getCurrentTimeAndDate from "../utils/getCurrentTimeAndDate";
@@ -7,6 +7,8 @@ import getCurrentTimeAndDate from "../utils/getCurrentTimeAndDate";
 import { toast } from "react-toastify"
 
 const submitOrder = async (userProfileDetails, orderData) => {
+    // console.log(userProfileDetails.userStoreCredit);    
+
     try {
         const orderDataCopy = {
             ...orderData,
@@ -26,6 +28,11 @@ const submitOrder = async (userProfileDetails, orderData) => {
 
         // Add a new document to the orders collection
         await addDoc(collection(db, 'orders'), orderDataCopy);
+
+        // update user store credits
+        await updateDoc(doc(db, 'users', userProfileDetails.userID), {
+            storeCredit: userProfileDetails.userStoreCredit,
+        });
 
         //success message
         toast.success('Your order has been submitted');

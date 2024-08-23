@@ -5,6 +5,8 @@ import { useGlobalContext } from '../../context'
 const CartCostDetails = () => {
     const { cartItems, handleClearCart, userProfileDetails } = useGlobalContext()
 
+    const { cartItemsList, totalQuantity, shipping, orderCost, gradTotal } = cartItems
+
     return (
         <div className='bg-info px-4 py-3 rounded rounded-4'>
             <h4 className='text-center mb-3'>
@@ -18,7 +20,7 @@ const CartCostDetails = () => {
                         Number of products:
                     </p>
                     <p className='fw-bold'>
-                        {cartItems.cartItemsList.length}
+                        {cartItemsList.length}
                     </p>
                 </div>
                 {/* row item 2 */}
@@ -27,7 +29,7 @@ const CartCostDetails = () => {
                         Total Quantity:
                     </p>
                     <p className='fw-bold'>
-                        {cartItems.totalQuantity}
+                        {totalQuantity}
                     </p>
                 </div>
                 {/* row item 3 */}
@@ -36,7 +38,7 @@ const CartCostDetails = () => {
                         Order Cost:
                     </p>
                     <p className='fw-bold'>
-                        $ {cartItems.orderCost}
+                        $ {orderCost}
                     </p>
                 </div>
                 {/* row item 4 */}
@@ -45,17 +47,17 @@ const CartCostDetails = () => {
                         Shipping Cost:
                     </p>
                     <p className='fw-bold'>
-                        + {cartItems.shipping}%
+                        + {shipping}%
                     </p>
                 </div>
             </div>
 
             <div className="grand-total text-center">
-                <h5 className=''>
+                <h5>
                     Grand Total:
                 </h5>
                 <p className='fw-bold'>
-                    $ {(+cartItems.orderCost + (+cartItems.orderCost / cartItems.shipping)).toFixed(2)}
+                    $ {gradTotal}
                 </p>
             </div>
 
