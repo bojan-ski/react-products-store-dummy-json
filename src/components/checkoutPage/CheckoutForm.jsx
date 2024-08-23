@@ -59,11 +59,12 @@ const CheckoutForm = () => {
         e.preventDefault()
 
         if (window.confirm('Place Order?')) {
-            console.log('handleSubmitOrderDetails');
+            // console.log('handleSubmitOrderDetails');
 
             const orderFormsData = {
                 orderDetails: cartItems,
                 grandTotal: cartItems.gradTotal,
+                orderStatus: 'pending',
                 cardDetails,
                 shippingDetails
             }
@@ -85,13 +86,15 @@ const CheckoutForm = () => {
             //     }
             // }
 
-            // console.log(orderFormsData);
+            console.log(orderFormsData);
             const response = await submitOrder(userProfileDetails, orderFormsData)
 
-            if(response) setTimeout(() => {
-                clearCart()
-                navigate('/profile')
-            }, 1500)
+            if(response) console.log('order submitted');
+
+            // if(response) setTimeout(() => {
+            //     clearCart()
+            //     navigate('/profile')
+            // }, 1500)
             
         }
     }

@@ -17,6 +17,7 @@ const OrderHistoryList = ({ orderHistory }) => {
                     <th scope="col">Total Quantity</th>
                     <th scope="col">Grand Total</th>
                     <th scope="col">Order submitted</th>
+                    <th scope="col">Order status</th>
                     <th scope="col"></th>
                 </tr>
             </thead>

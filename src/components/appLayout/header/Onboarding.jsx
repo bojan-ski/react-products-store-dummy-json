@@ -4,7 +4,7 @@ import { useGlobalContext } from "../../../context"
 
 const Onboarding = () => {
   const { userProfileDetails, logOutUser } = useGlobalContext()
-  // console.log(userProfileDetails);
+  console.log(userProfileDetails);
 
   return (
     <div className="onboarding text-end mb-3">

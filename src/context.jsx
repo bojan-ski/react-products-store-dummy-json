@@ -2,6 +2,8 @@ import { useContext, createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 // firebase/firestore funcs
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth"
+// api func
+import fetchUserStoreCreditFromFirebase from "./api/fetchUserStoreCreditFromFirebase";
 // toastify
 import { toast } from "react-toastify";
 
@@ -26,26 +28,52 @@ export const AppProvider = ({ children }) => {
 
     const [userProfileDetails, setUserProfileDetails] = useState({
         userID: '',
-        userName: ''
+        userName: '',
+        userStoreCredit: 0
     })
 
-    useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
+    const fetchUserDetails = async () => {
+        onAuthStateChanged(auth, async (user) => {
             if (user) {
-                auth.currentUser ? (
-                    setUserProfileDetails({
-                        userID: user.uid,
-                        userName: user.displayName
-                    })
-                ) : (
-                    setUserProfileDetails({
-                        userID: '',
-                        userName: ''
-                    })
-                )
+                const storeCredit = await fetchUserStoreCreditFromFirebase(user.email);
+                setUserProfileDetails({
+                    userID: user.uid,
+                    userName: user.displayName,
+                    userStoreCredit: storeCredit || 0
+                });
+            } else {
+                setUserProfileDetails({
+                    userID: '',
+                    userName: '',
+                    userStoreCredit: 0,
+                });
             }
-        })
-    }, [])
+        });
+    };
+
+    useEffect(()=>{
+        fetchUserDetails()
+    },[])
+
+    // useEffect(() => {
+    //     onAuthStateChanged(auth, (user) => {
+    //         if (user) {
+    //             auth.currentUser ? (
+    //                 setUserProfileDetails({
+    //                     userID: user.uid,
+    //                     userName: user.displayName,
+    //                     userStoreCredit: fetchUserStoreCreditFromFirebase(user.email)
+    //                 })
+    //             ) : (
+    //                 setUserProfileDetails({
+    //                     userID: '',
+    //                     userName: '',
+    //                     userStoreCredit: 0
+    //                 })
+    //             )
+    //         }
+    //     })
+    // }, [])
 
     // log out user
     const logOutUser = async () => {
@@ -55,7 +83,8 @@ export const AppProvider = ({ children }) => {
 
                 setUserProfileDetails({
                     userID: '',
-                    userName: ''
+                    userName: '',
+                    userStoreCredit: 0
                 })
 
                 // success message

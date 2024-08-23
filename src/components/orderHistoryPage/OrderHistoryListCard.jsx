@@ -19,6 +19,9 @@ const OrderHistoryListCard = ({ order }) => {
             <td>
                 {data.orderCreated}
             </td>
+            <td>
+                {data.orderStatus}
+            </td>
             <td className="text-center">
                 <Link to={`${order.id}`} className="btn btn-success">
                     Order details

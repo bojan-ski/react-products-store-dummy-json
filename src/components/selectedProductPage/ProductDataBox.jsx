@@ -19,7 +19,7 @@ const ProductDataBox = () => {
         category,
         price,
         quantity: 1,
-        totalPrice: 0
+        totalPrice: price * 1
     })
 
     const handleAmount = e => {
@@ -60,10 +60,13 @@ const ProductDataBox = () => {
             };
         })
 
+        
         // console.log(cartItem);
         toast.success('product added to cart')
     }
-
+    
+    // console.log(cartItems);     
+       
     return (
         <>
             <div className="product-data">
