@@ -8,7 +8,7 @@ const CartItem = ({ cartItem }) => {
     // console.log(cartItem);
     const { setCartItems } = useGlobalContext()
 
-    const { id, thumbnail, title, brand, category, price, quantity, totalPrice } = cartItem
+    const { id, thumbnail, title, category, price, quantity, totalPrice } = cartItem
 
     const handleUpdatedCart = (e) => {
         e.preventDefault()

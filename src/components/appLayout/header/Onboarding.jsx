@@ -7,7 +7,7 @@ const Onboarding = () => {
   // console.log(userProfileDetails);
 
   return (
-    <div className={`onboarding mb-3 ${userProfileDetails.userName ? 'd-flex align-items-center justify-content-between' : 'text-end'}`}>
+    <div className={`onboarding px-3 mb-3 ${userProfileDetails.userName ? 'd-flex align-items-center justify-content-between' : 'text-end'}`}>
       {userProfileDetails.userName ? (
         <>
           <div className="d-flex align-items-center fw-bold">

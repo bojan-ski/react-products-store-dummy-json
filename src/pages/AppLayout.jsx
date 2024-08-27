@@ -19,7 +19,7 @@ const AppLayout = () => {
             <>
                 <Header />
 
-                <main>
+                <main className="my-5">
                     {isPageLoading ? <Loading /> : <Outlet />}
                 </main>
 

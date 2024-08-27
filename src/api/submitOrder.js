@@ -18,6 +18,13 @@ const submitOrder = async (userProfileDetails, orderData) => {
             orderCreated: getCurrentTimeAndDate()
         }
 
+        // console.log(orderDataCopy);        
+
+        // const cleanedData = orderDataCopy.fromEntries(
+        //     orderDataCopy.entries(data).filter(([_, v]) => v !== undefined)
+        // );
+        // console.log(cleanedData);       
+
         const userDocRef = doc(db, `users/${userProfileDetails.userID}`);
 
         // Reference to the orderHistory subcollection

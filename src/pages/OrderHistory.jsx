@@ -38,7 +38,7 @@ const OrderHistory = () => {
     // console.log(displayedDataFromDB.displayedDataList);
 
     return (
-        <div className="order-history-page">
+        <div className="order-history-page mb-5">
             <div className="container">
 
                 <BackButtons backPath='/profile' />
@@ -50,7 +50,7 @@ const OrderHistory = () => {
                         <>
                             <OrderHistoryList orderHistory={displayedOrderHistory} />
                             
-                            {(userOrderHistory.length >= 10) && (
+                            {userOrderHistory.length >= 10 && (
                                 <CustomPagination dataFromDB={userOrderHistory} setDisplayedContent={setDisplayedBookmarkedProducts} />
                             )}
                         </>

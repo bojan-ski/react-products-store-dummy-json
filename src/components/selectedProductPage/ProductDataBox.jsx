@@ -15,7 +15,6 @@ const ProductDataBox = () => {
         id,
         thumbnail,
         title,
-        brand,
         category,
         price,
         quantity: 1,

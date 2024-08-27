@@ -69,16 +69,15 @@ const CheckoutForm = () => {
                 shippingDetails
             }
 
-            console.log(orderFormsData);
+            // console.log(orderFormsData);
             const response = await submitOrder(userProfileDetails, orderFormsData)
 
-            if(response) console.log('order submitted');
+            // if(response) console.log('order submitted');
 
-            // if(response) setTimeout(() => {
-            //     clearCart()
-            //     navigate('/profile')
-            // }, 1500)
-            
+            if(response) setTimeout(() => {
+                clearCart()
+                navigate('/profile')
+            }, 1500)            
         }
     }
 

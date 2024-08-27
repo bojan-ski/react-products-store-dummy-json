@@ -15,51 +15,59 @@ import OrderShippingDetails from "../components/selectedOrderPage/OrderShippingD
 // LOADER
 export const loader = async ({ params }) => {
     const selectedOrderDetails = await fetchSelectedOrderDetailsFromFirebase(params.id)
-  
+
     return selectedOrderDetails
 }
 
 const SelectedOrder = () => {
     const selectedOrderDetails = useLoaderData()
     const { userProfileDetails } = useGlobalContext()
- 
+
     if (selectedOrderDetails.userID !== userProfileDetails.userID) {
         redirect('/')
     }
 
-    const { cardDetails, orderDetails, shippingDetails } = selectedOrderDetails  
+    const { cardDetails, orderDetails, shippingDetails, orderStatus } = selectedOrderDetails
 
     return (
-        <div className="container">
+        <div className="selected-order-page">
+            <div className="container">
 
-            <BackButtons backPath='/profile/order-history' />
+                <section className="d-flex align-items-center justify-content-between mb-5">
+                    <BackButtons backPath='/profile/order-history' />
 
-            <PageHeader page="Selected Order" />
+                    <h5 className={`capitalize fw-bold mb-0 ${orderStatus == 'send' ? 'text-success' : orderStatus == 'cancel' ? 'text-danger' : 'text-warning'}`}>
+                        {orderStatus}
+                    </h5>
+                </section>
 
-            <section className="selected-order-details">
-                <div className="row">
+                <PageHeader page="Selected Order" />
 
-                    {/* row item 1 */}
-                    <div className="col-12 col-md-8 mb-3">
-                        <OrderedProducts orderDetails={orderDetails}/>                        
+                <section className="selected-order-details">
+                    <div className="row">
+
+                        {/* row item 1 */}
+                        <div className="col-12 col-md-7 mb-4">
+                            <OrderedProducts orderDetails={orderDetails} />
+                        </div>
+
+                        {/* row item 2 */}
+                        <div className="col-12 col-md-5 mb-4">
+                            <OrderTotal selectedOrderDetails={selectedOrderDetails} orderDetails={orderDetails} />
+                        </div>
+
+                        {/* row item 3 */}
+                        <div className="col-12 col-md-6 mb-4">
+                            <OrderCardDetails cardDetails={cardDetails} />
+                        </div>
+
+                        {/* row item 4 */}
+                        <div className="col-12 col-md-6 mb-4">
+                            <OrderShippingDetails shippingDetails={shippingDetails} />
+                        </div>
                     </div>
-
-                    {/* row item 2 */}
-                    <div className="col-12 col-md-4 mb-3">
-                        <OrderTotal selectedOrderDetails={selectedOrderDetails} orderDetails={orderDetails}/>
-                    </div>
-
-                    {/* row item 3 */}
-                    <div className="col-12 col-md-6 mb-3">
-                        <OrderCardDetails cardDetails={cardDetails}/>
-                    </div>
-
-                    {/* row item 4 */}
-                    <div className="col-12 col-md-6 mb-3">
-                        <OrderShippingDetails shippingDetails={shippingDetails}/>
-                    </div>
-                </div>
-            </section>
+                </section>
+            </div>
         </div>
     )
 }

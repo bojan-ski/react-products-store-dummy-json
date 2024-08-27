@@ -19,7 +19,7 @@ const OrderHistoryListCard = ({ order }) => {
             <td>
                 {data.orderCreated}
             </td>
-            <td>
+            <td className="capitalize">
                 {data.orderStatus}
             </td>
             <td className="text-center">

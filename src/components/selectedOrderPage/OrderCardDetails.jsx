@@ -1,33 +1,45 @@
-const OrderCardDetails = ({cardDetails}) => {
+const OrderCardDetails = ({ cardDetails }) => {
     return (
         <>
-            <h2>Card details</h2>
+            <h2 className="text-center mb-4">Card details</h2>
 
             <section>
-                <p className="fw-bold">
-                    Name on card
-                </p>
-                <p className="fw-bold text-muted capitalize">
-                    {cardDetails.nameOnCard}
-                </p>
-                <p className="fw-bold">
-                    Card number
-                </p>
-                <p className="fw-bold text-muted">
-                    {cardDetails.cardNumber}
-                </p>
-                <p className="fw-bold">
-                    Secure code
-                </p>
-                <p className="fw-bold text-muted">
-                    {cardDetails.secureCode}
-                </p>
-                <p className="fw-bold">
-                    Card expires
-                </p>
-                <p className="fw-bold text-muted">
-                    {cardDetails.cardExpires}
-                </p>
+                <div className="row">
+
+                    {/* row item 1 */}
+                    <div className="col-6 text-center">
+                        <p className="fw-bold text-muted">
+                            Name on card
+                        </p>
+                        <p className="fw-bold capitalize">
+                            {cardDetails.nameOnCard}
+                        </p>
+                        <p className="fw-bold text-muted">
+                            Card number
+                        </p>
+                        <p className="fw-bold">
+                            {cardDetails.cardNumber}
+                        </p>
+                    </div>
+
+                    {/* row item 2 */}
+                    <div className="col-6 text-center">
+                        <p className="fw-bold text-muted">
+                            Secure code
+                        </p>
+                        <p className="fw-bold">
+                            {cardDetails.secureCode}
+                        </p>
+                        <p className="fw-bold text-muted">
+                            Card expires
+                        </p>
+                        <p className="fw-bold">
+                            {cardDetails.cardExpires}
+                        </p>
+                    </div>
+                </div>
+
+
             </section>
         </>
     )

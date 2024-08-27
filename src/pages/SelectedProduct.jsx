@@ -25,21 +25,27 @@ const SelectedProduct = () => {
     // const urlBackPath = window.location.pathname.split('/')
     // console.log(urlBackPath);
 
-    let urlBackPath;
+    // let urlBackPath;
 
-    if(window.location.pathname.split('/').includes('compare')){
-        urlBackPath = '/compare'
-    }else if(window.location.pathname.split('/').includes('bookmarked-products')){
-        urlBackPath = '/profile/bookmarked-products'        
-    }else{
-        urlBackPath = '/'
-    }
+    // if(window.location.pathname.split('/').includes('compare')){
+    //     urlBackPath = '/compare'
+    // }else if(window.location.pathname.split('/').includes('bookmarked-products')){
+    //     urlBackPath = '/profile/bookmarked-products'        
+    // }else{
+    //     urlBackPath = '/'
+    // }
+
+    let urlBackPath = window.location.pathname.split('/').includes('compare')
+        ? '/compare'
+        : window.location.pathname.split('/').includes('bookmarked-products')
+            ? '/profile/bookmarked-products'
+            : '/';
 
     return (
         <div className="selected-product-page my-5">
             <div className="container">
 
-                <section className="d-flex align-items-center justify-content-between my-5">
+                <section className="d-flex align-items-center justify-content-between">
                     {/* <Link to={urlBackPath ? '/compare' : '/'} className="btn btn-warning"> */}
                     {/* <Link to={urlBackPath} className="btn btn-warning">
                         Back

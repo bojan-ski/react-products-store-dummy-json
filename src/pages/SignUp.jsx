@@ -12,7 +12,6 @@ const SignUp = () => {
         const enteredEmail = e.target.elements[1].value.trim()
         const enteredPassword = e.target.elements[2].value
 
-
         const response = await userCreateAccount(enteredUsername, enteredEmail, enteredPassword)
 
         if (response) {

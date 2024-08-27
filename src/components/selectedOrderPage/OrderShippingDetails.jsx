@@ -1,33 +1,43 @@
-const OrderShippingDetails = ({shippingDetails}) => {
+const OrderShippingDetails = ({ shippingDetails }) => {
     return (
         <>
-            <h2>Shipping details</h2>
+            <h2 className="text-center mb-4">Shipping details</h2>
 
             <section>
-                <p className="fw-bold">
-                    Street address
-                </p>
-                <p className="fw-bold text-muted capitalize">
-                    {shippingDetails.streetAddress}
-                </p>
-                <p className="fw-bold">
-                    City
-                </p>
-                <p className="fw-bold text-muted capitalize">
-                    {shippingDetails.city}
-                </p>
-                <p className="fw-bold">
-                    ZIP
-                </p>
-                <p className="fw-bold text-muted">
-                    {shippingDetails.zip.toUpperCase()}
-                </p>
-                <p className="fw-bold">
-                    State
-                </p>
-                <p className="fw-bold text-muted capitalize">
-                    {shippingDetails.state}
-                </p>
+                <div className="row">
+
+                    {/* row item 1 */}
+                    <div className="col-6 text-center">
+                        <p className="fw-bold text-muted">
+                            Street address
+                        </p>
+                        <p className="fw-bold capitalize">
+                            {shippingDetails.streetAddress}
+                        </p>
+                        <p className="fw-bold text-muted">
+                            City
+                        </p>
+                        <p className="fw-bold capitalize">
+                            {shippingDetails.city}
+                        </p>
+                    </div>
+
+                    {/* row item 2 */}
+                    <div className="col-6 text-center">
+                        <p className="fw-bold text-muted">
+                            ZIP
+                        </p>
+                        <p className="fw-bold">
+                            {shippingDetails.zip.toUpperCase()}
+                        </p>
+                        <p className="fw-bold text-muted">
+                            State
+                        </p>
+                        <p className="fw-bold capitalize">
+                            {shippingDetails.state}
+                        </p>
+                    </div>
+                </div>
             </section>
         </>
     )
