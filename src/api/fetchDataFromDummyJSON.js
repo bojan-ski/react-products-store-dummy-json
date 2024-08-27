@@ -4,7 +4,7 @@ import { toast } from "react-toastify"
 
 
 const fetchDataFromDummyJSON = async (updatedURL, path) => {
-    const url = `${import.meta.env.VITE_FIREBASE_PRODUCTS_API_URL}`
+    const url = `${import.meta.env.VITE_DUMMYJSON_PRODUCTS_API_URL}`
     // console.log(updatedURL);
     // console.log(path);
 
