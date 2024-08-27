@@ -85,7 +85,7 @@ const CustomPagination = ({ dataFromDB, setDisplayedContent }) => {
     }
 
     return (
-        <div className="pagination my-4 d-flex align-items-center justify-content-between">
+        <div className="pagination mt-4 d-flex align-items-center justify-content-between">
             <div className="number-of-pages">
                 <p className="mb-0 fw-bold text-muted">
                     Page:

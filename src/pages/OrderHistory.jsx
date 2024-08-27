@@ -38,7 +38,7 @@ const OrderHistory = () => {
     // console.log(displayedDataFromDB.displayedDataList);
 
     return (
-        <div className="order-history-page mb-5">
+        <div className="order-history-page">
             <div className="container">
 
                 <BackButtons backPath='/profile' />

@@ -1,6 +1,6 @@
 const PageHeader = ({ page }) => {
     return (
-        <section className="page-header my-5">
+        <section className="page-header mb-5">
             <h2 className="fw-bold text-center">
                 {page}
             </h2>

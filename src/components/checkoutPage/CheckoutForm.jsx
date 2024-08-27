@@ -82,7 +82,7 @@ const CheckoutForm = () => {
     }
 
     return (
-        <form className="mb-5" onSubmit={handleSubmitOrderDetails}>
+        <form onSubmit={handleSubmitOrderDetails}>
             <div className="row">
 
                 {/* row item 1 */}

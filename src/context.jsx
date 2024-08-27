@@ -96,10 +96,13 @@ export const AppProvider = ({ children }) => {
     const handleClearCart = () => {
         if (window.confirm('Are you sure you want to clear the Cart?')) {
             clearCart();
-
+            
             toast.success('Cart has been emptied.')
+
+            if(window.location.pathname == '/checkout') navigate('/')           
         }
     }
+    
 
     return <AppContext.Provider value={{
         availableProducts, // ProductsList, Pagination

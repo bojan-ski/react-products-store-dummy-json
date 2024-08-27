@@ -54,7 +54,7 @@ const Pagination = () => {
 
     return (
         // <div className="pagination mb-4 d-flex align-items-center justify-content-between">
-        <div className="pagination mb-4 d-flex justify-content-center">
+        <div className="pagination d-flex justify-content-center">
             <div className="number-of-pages">
                 <button className="btn-info btn px-3 me-2" onClick={() => {
                     productsListSkipNumber = 0

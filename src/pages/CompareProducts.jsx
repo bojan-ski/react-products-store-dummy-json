@@ -10,7 +10,7 @@ const CompareProducts = () => {
     // console.log(compareProductsList);
 
     return (
-        <div className="compare-products-page my-5">
+        <div className="compare-products-page">
             <PageHeader page='Compare Products' />
 
             <div className="container">

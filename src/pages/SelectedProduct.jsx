@@ -42,7 +42,7 @@ const SelectedProduct = () => {
             : '/';
 
     return (
-        <div className="selected-product-page my-5">
+        <div className="selected-product-page">
             <div className="container">
 
                 <section className="d-flex align-items-center justify-content-between">
