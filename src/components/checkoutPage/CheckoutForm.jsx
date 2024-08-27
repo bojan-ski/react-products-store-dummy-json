@@ -7,9 +7,11 @@ import submitOrder from "../../api/submitOrder"
 // components
 import CreditCardDetails from "./CreditCardDetails"
 import ShippingDetails from "./ShippingDetails"
+// toastify
+import { toast } from "react-toastify"
 
 
-const CheckoutForm = () => {
+const CheckoutForm = ({ setTogglePaymentModalAnimation }) => {
     const userShippingDetails = useLoaderData()
     const { userProfileDetails, cartItems, clearCart, handleClearCart, navigate } = useGlobalContext()
     // console.log(userShippingDetails);  
@@ -68,16 +70,24 @@ const CheckoutForm = () => {
                 cardDetails,
                 shippingDetails
             }
-
             // console.log(orderFormsData);
+
             const response = await submitOrder(userProfileDetails, orderFormsData)
 
-            // if(response) console.log('order submitted');
+            if (response) {
+                setTogglePaymentModalAnimation('block')
 
-            if(response) setTimeout(() => {
-                clearCart()
-                navigate('/profile')
-            }, 1500)            
+                setTimeout(() => {
+                    clearCart()
+                    setTogglePaymentModalAnimation('none')
+
+                    //success message
+                    toast.success('Your order has been submitted');
+
+                    // navigate user 
+                    navigate('/profile')
+                }, 5000)
+            }
         }
     }
 

@@ -41,9 +41,6 @@ const submitOrder = async (userProfileDetails, orderData) => {
             storeCredit: userProfileDetails.userStoreCredit,
         });
 
-        //success message
-        toast.success('Your order has been submitted');
-
         return true
     } catch (error) {
         //error message
